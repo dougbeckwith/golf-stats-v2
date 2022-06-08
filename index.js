@@ -5,10 +5,6 @@ require('dotenv').config()
 let cors = require('cors')
 // var path = require('path')
 
-let port = process.env.PORT
-if (port == null || port == '') {
-  port = 3001
-}
 console.log('test')
 const connectDataBase = async () => {
   try {
@@ -31,6 +27,6 @@ app.get('*', (req, res) => {
 
 app.use('/clubs', require('./routes/clubRoutes'))
 
-app.listen(port, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log(`Example app listening on port ${port}`)
 })
