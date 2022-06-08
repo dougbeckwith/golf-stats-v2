@@ -28,5 +28,5 @@ app.get('*', (req, res) => {
 app.use('/clubs', require('./routes/clubRoutes'))
 
 app.listen(process.env.PORT || 3001, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Server listening`)
 })
