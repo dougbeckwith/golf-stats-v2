@@ -3,7 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 require('dotenv').config()
 let cors = require('cors')
-// var path = require('path')
+var path = require('path')
 
 console.log('test')
 const connectDataBase = async () => {
