@@ -29,6 +29,7 @@ const App = () => {
     }
     getAllClubData()
   }, [])
+  // Url is /clubs route ui to /clubs
 
   return (
     <BrowserRouter>
