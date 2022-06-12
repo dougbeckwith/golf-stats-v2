@@ -19,17 +19,15 @@ connectDataBase()
 
 app.use(cors())
 app.use(express.json())
-
+app.use('/api', require('./routes/clubRoutes'))
 // PORT only defined in production server
 if (process.env.PORT) {
   app.use(express.static(path.join(__dirname, '/client/build')))
 
-  app.get('/', (req, res) => {
+  app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/client/build', 'index.html'))
   })
 }
-
-app.use('/api', require('./routes/clubRoutes'))
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Server listening ${process.env.PORT} ${port}`)
