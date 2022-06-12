@@ -33,7 +33,7 @@ const Club = ({setClubData}) => {
 
   useEffect(() => {
     const fetchClub = async () => {
-      const result = await axios.get(`${process.env.REACT_APP_URL}/clubs/${id}`)
+      const result = await axios.get(`${process.env.REACT_APP_URL}/api/${id}`)
       setClub(result.data)
       setAvgYards(getAverageYards(result.data))
       setIsLoading(false)
@@ -45,7 +45,7 @@ const Club = ({setClubData}) => {
   const handleDelete = async () => {
     try {
       const result = await axios.delete(
-        `${process.env.REACT_APP_URL}/clubs/${id}`
+        `${process.env.REACT_APP_URL}/api/${id}`
       )
       setClubData(result.data)
       navigateToClubs()
@@ -58,7 +58,7 @@ const Club = ({setClubData}) => {
     e.preventDefault()
     try {
       const result = await axios.patch(
-        `${process.env.REACT_APP_URL}/clubs/${id}`,
+        `${process.env.REACT_APP_URL}/api/${id}`,
         {
           club,
           deleteShot: null,

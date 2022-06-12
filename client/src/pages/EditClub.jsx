@@ -44,7 +44,7 @@ const EditClub = ({setIsLoading, isLoading}) => {
     e.preventDefault()
     if (inputValid(clubName) && inputValid(clubBrand)) {
       try {
-        await axios.patch(`${process.env.REACT_APP_URL}/clubs/${id}`, {
+        await axios.patch(`${process.env.REACT_APP_URL}/api/${id}`, {
           clubName: clubName,
           clubBrand: clubBrand,
           shot: null,

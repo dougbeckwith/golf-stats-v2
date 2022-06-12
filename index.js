@@ -29,7 +29,7 @@ if (process.env.PORT) {
   })
 }
 
-app.use('/clubs', require('./routes/clubRoutes'))
+app.use('/api', require('./routes/clubRoutes'))
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Server listening ${process.env.PORT} ${port}`)

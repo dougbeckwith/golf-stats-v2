@@ -33,7 +33,7 @@ const AddClub = () => {
     e.preventDefault()
     if (inputValid(clubName) && inputValid(clubBrand)) {
       try {
-        await axios.post(`${process.env.REACT_APP_URL}/clubs`, {
+        await axios.post(`${process.env.REACT_APP_URL}/api`, {
           clubName: clubName,
           brand: clubBrand,
           yards: [],

@@ -20,7 +20,7 @@ const App = () => {
     // Call Server to get Club Data
     const getAllClubData = async () => {
       try {
-        const result = await axios.get(`${process.env.REACT_APP_URL}/clubs`)
+        const result = await axios.get(`${process.env.REACT_APP_URL}/api`)
         setClubData(result.data)
         setIsLoading(false)
       } catch (err) {
