@@ -20,6 +20,7 @@ connectDataBase()
 app.use(cors())
 app.use(express.json())
 
+// PORT only defined in production server
 if (process.env.PORT) {
   app.use(express.static(path.join(__dirname, '/client/build')))
 

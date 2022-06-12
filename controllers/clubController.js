@@ -1,8 +1,5 @@
 const Club = require('../models/Club')
 
-// @route GET /clubs
-// @desc Get All clubs
-// @access Private
 const getClubs = async (req, res) => {
   try {
     const data = await Club.find({})
@@ -13,9 +10,6 @@ const getClubs = async (req, res) => {
   }
 }
 
-// @route POST /clubs
-// @desc Add club
-// @access Private
 const addClub = async (req, res) => {
   try {
     const data = req.body
@@ -29,9 +23,6 @@ const addClub = async (req, res) => {
   }
 }
 
-// @route PUT /clubs/:id
-// @desc Update clubs
-// @access Private
 const updateClub = async (req, res) => {
   const id = req.params.id
   const {clubName, clubBrand, shot, club, deleteShot, shotId} = req.body
@@ -77,9 +68,6 @@ const updateClub = async (req, res) => {
   }
 }
 
-// @route GET /clubs/:id
-// @desc Get club by id
-// @access Private
 const getClubById = async (req, res) => {
   try {
     const id = req.params.id
@@ -91,9 +79,6 @@ const getClubById = async (req, res) => {
   }
 }
 
-// @route DELETE /clubs/:id
-// @desc Delete club by id
-// @access Private
 const deleteClubById = async (req, res) => {
   try {
     const id = req.params.id
