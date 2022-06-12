@@ -15,7 +15,7 @@ const EditClub = ({setIsLoading, isLoading}) => {
 
   useEffect(() => {
     const fetchClub = async () => {
-      const result = await axios.get(`${process.env.REACT_APP_URL}/clubs/${id}`)
+      const result = await axios.get(`${process.env.REACT_APP_URL}/api/${id}`)
       setClub(result.data)
       setClubName(result.data.clubName)
       setClubBrand(result.data.brand)

@@ -14,12 +14,15 @@ const ShotItem = ({
   const id = params.id
   const handlePatch = async () => {
     try {
-      const result = await axios.patch(`http://localhost:3001/clubs/${id}`, {
-        deleteShot: true,
-        club: club,
-        shot: null,
-        shotId: shotId,
-      })
+      const result = await axios.patch(
+        `${process.env.REACT_APP_URL}/api/${id}`,
+        {
+          deleteShot: true,
+          club: club,
+          shot: null,
+          shotId: shotId,
+        }
+      )
       setClub(result.data)
       setAvgYards(getAverageYards(result.data))
     } catch (err) {

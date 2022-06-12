@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import {Link} from 'react-router-dom'
 import {FaCheckSquare} from 'react-icons/fa'
 
 const USER_REGEX = /^.{4,}$/
 const PWD_REGEX = /^.{5,}$/
-const REGISTER_URL = '/register'
+// const REGISTER_URL = '/register'
 
 const Register = () => {
   const [user, setUser] = useState('')
@@ -18,7 +18,7 @@ const Register = () => {
   const [validMatch, setValidMatch] = useState(false)
 
   const [errMsg, setErrMsg] = useState('')
-  const [success, setSuccess] = useState(false)
+  // const [success, setSuccess] = useState(false)
 
   useEffect(() => {
     setValidName(USER_REGEX.test(user))
@@ -40,44 +40,45 @@ const Register = () => {
   const handleSubmit = async (e) => {
     console.log('submit')
     e.preventDefault()
-    const v1 = USER_REGEX.test(user)
-    const v2 = PWD_REGEX.test(pwd)
-    const matchPw = pwd === matchPwd
-    if (!v1 || !v2 || !matchPw) {
-      console.log('err')
-      setErrMsg('Please enter valid username and password')
-      return
-    }
-    try {
-      const response = await axios.post(
-        REGISTER_URL,
-        JSON.stringify({user, pwd}),
-        {
-          headers: {'Content-Type': 'application/json'},
-          withCredentials: true,
-        }
-      )
-      console.log(response?.data)
-      console.log(response?.accessToken)
-      console.log(JSON.stringify(response))
-      setSuccess(true)
-      setUser('')
-      setPwd('')
-      setMatchPwd('')
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg('No Server Response')
-      } else if (err.response?.status === 409) {
-        setErrMsg('Username Taken')
-      } else {
-        setErrMsg('Registration Failed')
-      }
-    }
+    // const v1 = USER_REGEX.test(user)
+    // const v2 = PWD_REGEX.test(pwd)
+    // const matchPw = pwd === matchPwd
+    // if (!v1 || !v2 || !matchPw) {
+    //   console.log('err')
+    //   setErrMsg('Please enter valid username and password')
+    //   return
+    // }
+    // try {
+    //   const response = await axios.post(
+    //     REGISTER_URL,
+    //     JSON.stringify({user, pwd}),
+    //     {
+    //       headers: {'Content-Type': 'application/json'},
+    //       withCredentials: true,
+    //     }
+    //   )
+    //   console.log(response?.data)
+    //   console.log(response?.accessToken)
+    //   console.log(JSON.stringify(response))
+    //   setSuccess(true)
+    //   setUser('')
+    //   setPwd('')
+    //   setMatchPwd('')
+    // } catch (err) {
+    //   if (!err?.response) {
+    //     setErrMsg('No Server Response')
+    //   } else if (err.response?.status === 409) {
+    //     setErrMsg('Username Taken')
+    //   } else {
+    //     setErrMsg('Registration Failed')
+    //   }
+    // }
   }
 
   return (
     <>
-      {success ? (
+      {/* change to success future */}
+      {false ? (
         <section>
           <h1>Success!</h1>
           <p>
