@@ -106,30 +106,6 @@ const deleteClubById = async (req, res) => {
   }
 }
 
-// const updateClub = async (req, res) => {
-//   console.log('test')
-//   try {
-//     const {shot, goal, club} = req.body
-//     const id = club._id
-//     if (shot) {
-//       await Club.findOneAndUpdate(
-//         {_id: id},
-//         {yards: [...club.yards, shot], totalShots: club.totalShots + 1}
-//       )
-//       const data = await Club.find({})
-//       res.send(data)
-//     }
-//     if (goal) {
-//       await Club.findOneAndUpdate({_id: id}, {goal: goal})
-//       const data = await Club.find({})
-//       res.send(data)
-//     }
-//   } catch (err) {
-//     console.log(err)
-//     res.status(500).send('Server Error')
-//   }
-// }
-
 module.exports = {
   addClub,
   getClubs,
