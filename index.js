@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const cors = require('cors')
 const port = 3001
-// var path = require('path')
+var path = require('path')
 
 console.log('test')
 const connectDataBase = async () => {
