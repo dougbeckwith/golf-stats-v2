@@ -2,8 +2,9 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 require('dotenv').config()
-let cors = require('cors')
-var path = require('path')
+const cors = require('cors')
+const port = 3001
+// var path = require('path')
 
 console.log('test')
 const connectDataBase = async () => {
@@ -19,14 +20,16 @@ connectDataBase()
 app.use(cors())
 app.use(express.json())
 
-app.use(express.static(path.join(__dirname, '/client/build')))
+if (process.env.PORT) {
+  app.use(express.static(path.join(__dirname, '/client/build')))
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build', 'index.html'))
-})
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/client/build', 'index.html'))
+  })
+}
 
 app.use('/clubs', require('./routes/clubRoutes'))
 
-app.listen(process.env.PORT || 3001, () => {
-  console.log(`Server listening`)
+app.listen(process.env.PORT || port, () => {
+  console.log(`Server listening ${process.env.PORT} ${port}`)
 })

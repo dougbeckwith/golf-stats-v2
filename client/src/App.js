@@ -1,17 +1,16 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import {
-  AddClub,
-  EditClub,
-  Clubs,
-  Club,
-  Landing,
-  Login,
-  NotFound,
-  Register,
-  Layout,
-} from './pages/index'
+import AddClub from './pages/AddClub'
+import Clubs from './pages/Clubs'
+import Club from './pages/Club'
+import EditClub from './pages/EditClub'
+import Landing from './pages/Landing'
+import Layout from './components/Layout'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import NotFound from './pages/NotFound'
+
 import axios from 'axios'
 
 const App = () => {
@@ -70,7 +69,7 @@ const App = () => {
             }
           />
           <Route
-            path='edit/:id'
+            path=':id/edit'
             element={
               <EditClub
                 clubData={clubData}

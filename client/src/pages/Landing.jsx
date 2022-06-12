@@ -11,6 +11,9 @@ const Landing = () => {
       <Link to='/register'>
         <button>Register</button>
       </Link>
+      <Link to='/clubs'>
+        <button>Clubs</button>
+      </Link>
     </div>
   )
 }

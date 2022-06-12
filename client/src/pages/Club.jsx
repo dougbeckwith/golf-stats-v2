@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import ShotList from '../../components/ShotList'
-import ShotItem from '../../components/ShotItem'
+import ShotList from '../components/ShotList'
+import ShotItem from '../components/ShotItem'
 import {v4 as uuidv4} from 'uuid'
 
 const Club = ({setClubData}) => {
@@ -84,7 +84,7 @@ const Club = ({setClubData}) => {
           <p>{club.brand}</p>
           <p>Avg Yards : {avgYards}</p>
           <p>Total Shots : {club.totalShots}</p>
-          <Link to={`/clubs/edit/${id}`}>
+          <Link to={`/clubs/${id}/edit`}>
             <button>Edit Club</button>
           </Link>
           <button onClick={handleDelete}>Delete Club</button>

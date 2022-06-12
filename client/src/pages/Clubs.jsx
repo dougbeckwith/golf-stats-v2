@@ -1,8 +1,8 @@
 import React from 'react'
 import {useEffect} from 'react'
 import axios from 'axios'
-import ClubItem from '../../components/ClubItem'
-import ClubList from '../../components/ClubList'
+import ClubItem from '../components/ClubItem'
+import ClubList from '../components/ClubList'
 import {Link} from 'react-router-dom'
 import {v4 as uuidv4} from 'uuid'
 
@@ -11,7 +11,6 @@ const Clubs = ({clubData, setClubData, isLoading, setIsLoading}) => {
     const getAllClubData = async () => {
       try {
         const result = await axios.get(`${process.env.REACT_APP_URL}/clubs`)
-        console.log(result.data)
         setClubData(result.data)
         setIsLoading(false)
       } catch (err) {
