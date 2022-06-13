@@ -144,42 +144,4 @@ const EditClub = ({setIsLoading, isLoading}) => {
   )
 }
 
-// ;<form style={{marginTop: '0px'}}>
-//   <div style={{paddingTop: '15px'}}>
-//     <label htmlFor='club' style={{display: 'block'}}>
-//       Club
-//     </label>
-//     <input
-//       id='club'
-//       type='text'
-//       value={clubName}
-//       onChange={handleNameChange}
-//       placeholder='Club'
-//     />
-//     {nameMessage && (
-//       <div style={{color: 'red', paddingTop: '10px'}}>
-//         Please enter club Nnme
-//       </div>
-//     )}
-//   </div>
-//   <div style={{paddingTop: '15px'}}>
-//     <label htmlFor='brand' style={{display: 'block'}}>
-//       Brand
-//     </label>
-//     <input
-//       id='brand'
-//       type='text'
-//       value={clubBrand}
-//       onChange={handleBrandChange}
-//       placeholder='Brand'
-//     />
-//     {brandMessage && (
-//       <div style={{color: 'red', paddingTop: '10px'}}>
-//         Please enter brand name
-//       </div>
-//     )}
-//   </div>
-//   <div style={{paddingTop: '15px'}}></div>
-// </form>
-
 export default EditClub

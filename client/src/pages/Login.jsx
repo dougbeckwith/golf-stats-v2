@@ -92,7 +92,7 @@ const Login = () => {
       ) : ( */}
 
       <ComingSoon text={'Login'} />
-      <div className='min-h-screen flex flex-col'>
+      <div className='pt-6 flex flex-col'>
         <div className='container max-w-[600px] mx-auto flex-1 flex flex-col items-center justify-center px-2'>
           <div className='bg-white px-6 py-8 rounded shadow-xl border-2 text-black w-full'>
             <h1 className='mb-8 text-3xl text-center'>Login</h1>
@@ -174,7 +174,7 @@ const Login = () => {
               <Link to='/login'>
                 <button
                   onClick={handleSubmit}
-                  className='w-full text-center py-3 rounded bg-blue-600 text-white hover:bg-blue-500 focus:outline-none my-1'>
+                  className='btn btn--primary w-full'>
                   Login
                 </button>
               </Link>
