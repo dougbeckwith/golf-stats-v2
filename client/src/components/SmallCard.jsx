@@ -1,9 +1,4 @@
 const SmallCard = ({icon, title, value}) => {
-  const symbol = (
-    <div className='flex'>
-      <span className='pl-2 pr-1'>&#177;</span>
-    </div>
-  )
   return (
     <div className='w-full rounded-md  shadow-lg py-3 px-3 mb-2 bg-[#f7f7f5] flex items-center border border-slate-200'>
       <div>{icon}</div>

@@ -17,7 +17,6 @@ const ComingSoon = ({text}) => {
         <div>
           <p className='font-bold'>{text} feature coming soon</p>
           <p className='text-sm'>Check back another time</p>
-          <p className='text-sm'>Click to the button to test beta</p>
         </div>
       </div>
     </div>

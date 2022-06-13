@@ -7,6 +7,7 @@ const Navbar = () => {
   const [IsFaTimes, setIsFaTimes] = useState(false)
   const toggleIcon = () => {
     setIsFaTimes(!IsFaTimes)
+    // console.log(IsFaTimes)
   }
 
   const navLinks = [
@@ -18,7 +19,6 @@ const Navbar = () => {
     return (
       <li key={item.id} className='px-3 font-medium py-10 text-[#7e7d7d]'>
         <NavLink
-          onClick={toggleIcon}
           className={(navData) =>
             navData.isActive
               ? 'text-[#14A76C] text-lg'
@@ -39,9 +39,7 @@ const Navbar = () => {
         </div>
         {/* Desktop Links */}
         <ul className='hidden md:flex'>{navLinkList}</ul>
-        <div
-          className='block md:hidden cursor-pointer z-10'
-          onClick={toggleIcon}>
+        <div className='block md:hidden cursor-pointer z-10'>
           {IsFaTimes ? (
             <FaTimes size={30} color={'#7e7d7d'} />
           ) : (
@@ -52,7 +50,9 @@ const Navbar = () => {
 
       {/* Mobile Links */}
       {IsFaTimes && (
-        <ul className='absolute md:hidden top-[90px] left-0 w-full h-screen bg-[#f7f7f5] flex flex-col items-center'>
+        <ul
+          onClick={toggleIcon}
+          className='absolute md:hidden top-[90px] left-0 w-full h-screen bg-[#f7f7f5] flex flex-col items-center'>
           {navLinkList}
         </ul>
       )}

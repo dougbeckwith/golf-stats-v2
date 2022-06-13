@@ -92,7 +92,7 @@ const Register = () => {
 
       <ComingSoon text={'Account'} />
       <div className='pt-6 flex flex-col'>
-        <div className='container max-w-[600px] mx-auto flex-1 flex flex-col items-center justify-center px-2'>
+        <div className='container max-w-[600px] mx-auto flex flex-col items-center justify-center px-2'>
           <div className='bg-white px-6 py-8 rounded shadow-xl border-2 text-black w-full'>
             <h1 className='mb-8 text-3xl text-center'>Sign up</h1>
             <form>
