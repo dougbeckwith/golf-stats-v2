@@ -18,10 +18,10 @@
   }
 
   .btn--small {
-    @apply text-base rounded-lg py-2 px-2;
+    @apply text-base rounded-md py-2 px-2;
   }
   .btn--extra--small {
-    @apply text-base rounded-lg py-0 px-2;
+    @apply text-base rounded py-0 px-2;
   }
 
   .tittle {

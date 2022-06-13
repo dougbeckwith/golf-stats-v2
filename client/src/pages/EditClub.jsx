@@ -75,20 +75,18 @@ const EditClub = ({setIsLoading, isLoading}) => {
   }
   return (
     <>
-      <h1>Edit Club</h1>
       {isLoading ? (
         <div>Loading</div>
       ) : (
-        <div className='min-h-screen flex flex-col'>
+        <div className='min-h-screen pt-2 md:pt-10'>
           <div className='container max-w-[600px] mx-auto flex-1 flex flex-col items-center justify-center px-2'>
-            <div className='bg-white px-6 py-8 rounded shadow-xl border-2 text-black w-full'>
-              <h1 className='pb-5 text-2xl'>Add Club</h1>
+            <div className='bg-white px-3 py-4 md:px-6 md:py-8 md:rounded md:shadow-xl md:border-2 text-black w-full'>
+              <h1 className='pb-5 text-2xl'>Edit Club</h1>
               <form>
                 <div>
                   <label htmlFor='club'>Club</label>
                   <input
                     id='club'
-                    style={{padding: '15px'}}
                     type='text'
                     value={clubName}
                     onChange={handleNameChange}
@@ -102,10 +100,8 @@ const EditClub = ({setIsLoading, isLoading}) => {
                     Please a enter brand
                   </p>
                 </div>
-                <div style={{paddingTop: '10px'}}>
-                  <label htmlFor='brand' style={{display: 'block'}}>
-                    Brand
-                  </label>
+                <div>
+                  <label htmlFor='brand'>Brand</label>
                   <input
                     id='brand'
                     style={{padding: '15px'}}
@@ -127,12 +123,12 @@ const EditClub = ({setIsLoading, isLoading}) => {
                 </div>
                 <button
                   onClick={handleSubmit}
-                  className='mt-4 w-full text-center py-3 rounded bg-green-600 text-white hover:bg-green-500 focus:outline-none my-1'>
+                  className='mt-4 w-full btn btn--primary'>
                   Submit
                 </button>
                 <button
                   onClick={navigateBack}
-                  className='mt-4 w-full text-center py-3 rounded bg-red-600 text-white hover:bg-red-500 focus:outline-none my-1'>
+                  className='mt-4 w-full btn btn--secondary'>
                   Cancel
                 </button>
               </form>

@@ -63,9 +63,9 @@ const AddClub = () => {
 
   return (
     <>
-      <div className='min-h-screen flex flex-col'>
+      <div className='min-h-screen pt-2 md:pt-10'>
         <div className='container max-w-[600px] mx-auto flex-1 flex flex-col items-center justify-center px-2'>
-          <div className='bg-white px-6 py-8 rounded shadow-xl border-2 text-black w-full'>
+          <div className='bg-white px-3 py-4 md:px-6 md:py-8 md:rounded md:shadow-xl lg:border-2 text-black w-full'>
             <h1 className='pb-5 text-2xl'>Add Club</h1>
             <form>
               <div>

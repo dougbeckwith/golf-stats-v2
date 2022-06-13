@@ -42,7 +42,7 @@ const ShotItem = ({
 
         <div>
           <button
-            className='btn--extra--small btn--danger'
+            className='btn--extra--small btn--secondary'
             onClick={handlePatch}>
             Delete
           </button>

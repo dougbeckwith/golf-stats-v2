@@ -14,7 +14,7 @@ const Club = ({setClubData}) => {
   const id = params.id
   const [club, setClub] = useState()
   const [isLoading, setIsLoading] = useState(true)
-  const [shot, setShot] = useState('')
+  const [shot, setShot] = useState(0)
   const [avgYards, setAvgYards] = useState(0)
 
   const navigateToClubs = () => {
@@ -92,7 +92,7 @@ const Club = ({setClubData}) => {
                       onChange={(e) => setShot(e.target.value)}
                       className='border-2 p-2 rounded focus:outline-none focus:border-slate-400  focus:ring-slate-400'
                       value={shot}
-                      type='text'
+                      type='number'
                       placeholder='Yards'
                     />
                     <button
