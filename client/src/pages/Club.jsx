@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom'
 import ShotList from '../components/ShotList'
 import ShotItem from '../components/ShotItem'
 import {v4 as uuidv4} from 'uuid'
+import GolfIcon from '../components/GolfIcon'
+import SmallCard from '../components/SmallCard'
 
 const Club = ({setClubData}) => {
   const navigate = useNavigate()
@@ -75,54 +77,81 @@ const Club = ({setClubData}) => {
 
   return (
     <>
-      <h1>Club</h1>
-      {isLoading ? (
-        <div>Loading</div>
-      ) : (
-        <div>
-          <p>{club.clubName}</p>
-          <p>{club.brand}</p>
-          <p>Avg Yards : {avgYards}</p>
-          <p>Total Shots : {club.totalShots}</p>
-          <Link to={`/clubs/${id}/edit`}>
-            <button>Edit Club</button>
-          </Link>
-          <button onClick={handleDelete}>Delete Club</button>
-        </div>
-      )}
-      <h2>Shot List</h2>
-      <form>
-        <label htmlFor='' style={{display: 'block', paddingBottom: '10px'}}>
-          Add Shot
-        </label>
-        <input
-          onChange={(e) => setShot(e.target.value)}
-          value={shot}
-          type='text'
-          placeholder='Yards'
-          style={{padding: 10}}
-        />
-        <button onClick={handleAddShot}>Add Shot</button>
-      </form>
-      {isLoading ? (
-        <div>Loading</div>
-      ) : (
-        <ShotList>
-          {club.shots.map((shot) => {
-            return (
-              <ShotItem
-                key={uuidv4()}
-                shotId={shot.yardsId}
-                setClub={setClub}
-                shot={shot}
-                club={club}
-                setAvgYards={setAvgYards}
-                getAverageYards={getAverageYards}
+      <div className='w-full bg-[#f7f7f5] min-h-screen max-h-min '>
+        <div className='container m-auto pt-4 px-3 sm:px-0'>
+          {isLoading ? (
+            <div>Loading</div>
+          ) : (
+            <div className=''>
+              <div className=''>
+                <p className='font-semibold text-lg'>{club.clubName}</p>
+                <p>{club.brand}</p>
+                <form className='w-full pt-4 pb-2'>
+                  <div>
+                    <input
+                      onChange={(e) => setShot(e.target.value)}
+                      className='border-2 p-2 rounded focus:outline-none focus:border-slate-400  focus:ring-slate-400'
+                      value={shot}
+                      type='text'
+                      placeholder='Yards'
+                    />
+                    <button
+                      className='btn--small btn--primary'
+                      onClick={handleAddShot}>
+                      Add Shot
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <SmallCard
+                icon={<GolfIcon />}
+                title='Avg Yards'
+                value={avgYards}
               />
-            )
-          })}
-        </ShotList>
-      )}
+              <SmallCard
+                icon={<GolfIcon />}
+                title='Total Shots'
+                value={club.totalShots}
+              />
+
+              <div className='flex gap-2 pt-2'>
+                <Link to={`/clubs/${id}/edit`}>
+                  <button className='btn--small btn--secondary'>
+                    Edit Club
+                  </button>
+                </Link>
+                <button
+                  className='btn--small btn--danger'
+                  onClick={handleDelete}>
+                  Delete Club
+                </button>
+              </div>
+            </div>
+          )}
+          <h2 className='text-xl font-semibold pt-5 pb-4'>Shots</h2>
+
+          {isLoading ? (
+            <div>Loading</div>
+          ) : (
+            <ShotList>
+              {club.shots.map((shot) => {
+                return (
+                  <ShotItem
+                    key={uuidv4()}
+                    shotId={shot.yardsId}
+                    setClub={setClub}
+                    shot={shot}
+                    club={club}
+                    setAvgYards={setAvgYards}
+                    getAverageYards={getAverageYards}
+                  />
+                )
+              })}
+            </ShotList>
+          )}
+        </div>
+      </div>
     </>
   )
 }

@@ -21,8 +21,8 @@ const Navbar = () => {
           onClick={toggleIcon}
           className={(navData) =>
             navData.isActive
-              ? 'border-b-2 border-[#c60021] text-lg'
-              : 'hover:border-b hover:border-[#c60021] duration-200 text-lg'
+              ? 'text-[#14A76C] text-lg'
+              : 'hover:border-b hover:border-[#14A76C] duration-200 text-lg'
           }
           to={item.link}>
           {item.title}
@@ -34,8 +34,8 @@ const Navbar = () => {
   return (
     <nav className='w-full h-[90px] bg-[#f6f6f8] border-b border-[#eee] sticky top-0 z-10'>
       <div className='h-full m-auto container flex justify-between items-center px-3 sm:px-0'>
-        <div className='text-xl sm:text-2xl md:text-3xl text-[#7e7d7d] font-bold'>
-          <span className='text-[#c60021]'>Golf</span> Stats
+        <div className='text-xl sm:text-2xl md:text-3xl text-black font-bold'>
+          <span className='text-[#14A76C]'>Golf</span> Stats
         </div>
         {/* Desktop Links */}
         <ul className='hidden md:flex'>{navLinkList}</ul>

@@ -5,17 +5,23 @@
 .btn {
     @apply text-base font-medium rounded-lg py-3 px-4;
   }
-  
-  .btn--primary {
-    @apply bg-blue-500 text-white hover:bg-blue-600;
+   .btn--primary {
+    @apply bg-[#14A76C] text-white hover:bg-[#129963];
   }
   
   .btn--secondary {
-    @apply bg-slate-100 text-slate-900 hover:bg-slate-200;
+    @apply border border-[#4974a5] text-[#4974a5] hover:bg-slate-100;
+  }
+
+  .btn--danger {
+    @apply border border-[#E5625E] text-[#E5625E] hover:bg-slate-100;
   }
 
   .btn--small {
-    @apply text-base font-medium rounded-lg py-2 px-2;
+    @apply text-base rounded-lg py-2 px-2;
+  }
+  .btn--extra--small {
+    @apply text-base rounded-lg py-0 px-2;
   }
 
   .tittle {

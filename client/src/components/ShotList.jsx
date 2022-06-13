@@ -1,12 +1,7 @@
 import React from 'react'
 
 const ShotList = ({children}) => {
-  return (
-    <div
-      style={{display: 'flex', padding: '10px', gap: '20px', flexWrap: 'wrap'}}>
-      {children}
-    </div>
-  )
+  return <div className='flex flex-wrap gap-5'>{children}</div>
 }
 
 export default ShotList

@@ -32,8 +32,22 @@ const ShotItem = ({
 
   return (
     <>
-      <p>Yards: {shot.yards}</p>
-      <button onClick={handlePatch}>Delete</button>
+      <div className='rounded-md shadow-lg w-full m-auto sm:w-60 py-3 px-3 bg-[#f7f7f5] border border-slate-200'>
+        <div className=' text-xl flex items-center'>
+          <p className='text-[#7e7d7d] text-lg'>
+            Yards:{' '}
+            <span className='font-semibold text-[#14A76C]'> {shot.yards}</span>
+          </p>
+        </div>
+
+        <div>
+          <button
+            className='btn--extra--small btn--danger'
+            onClick={handlePatch}>
+            Delete
+          </button>
+        </div>
+      </div>
     </>
   )
 }
