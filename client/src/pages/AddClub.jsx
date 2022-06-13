@@ -108,12 +108,13 @@ const AddClub = () => {
 
               <button
                 onClick={handleSubmit}
-                className='mt-4 w-full text-center py-3 rounded bg-green-600 text-white hover:bg-green-500 focus:outline-none my-1'>
+                className='mt-4 w-full text-center py-3 rounded bg-[#c60021] text-white hover:bg-[#b7011f] focus:outline-none my-1'>
                 Add Club
               </button>
+
               <button
                 onClick={handleCancel}
-                className='mt-4 w-full text-center py-3 rounded bg-red-600 text-white hover:bg-red-500 focus:outline-none my-1'>
+                className='mt-4 w-full text-center py-3 rounded bg-white text-[#c60021] border border-[#c60021] hover:border-[#b7011f] focus:outline-none my-1'>
                 Cancel
               </button>
             </form>

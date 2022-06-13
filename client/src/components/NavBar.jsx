@@ -1,23 +1,63 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, {useState} from 'react'
+import {FaBars, FaTimes} from 'react-icons/fa'
+import {NavLink} from 'react-router-dom'
 
-const NavBar = () => {
+const Navbar = () => {
+  // State And Function Toggle Nav Menu
+  const [IsFaTimes, setIsFaTimes] = useState(false)
+  const toggleIcon = () => {
+    setIsFaTimes(!IsFaTimes)
+  }
+
+  const navLinks = [
+    {title: 'Clubs', id: 1, link: '/clubs'},
+    {title: 'Login', id: 2, link: '/login'},
+    {title: 'Register', id: 3, link: '/register'},
+  ]
+  const navLinkList = navLinks.map((item) => {
+    return (
+      <li key={item.id} className='px-3 font-medium py-10 text-[#7e7d7d]'>
+        <NavLink
+          onClick={toggleIcon}
+          className={(navData) =>
+            navData.isActive
+              ? 'border-b-2 border-[#c60021] text-lg'
+              : 'hover:border-b hover:border-[#c60021] duration-200 text-lg'
+          }
+          to={item.link}>
+          {item.title}
+        </NavLink>
+      </li>
+    )
+  })
+
   return (
-    <div className='bg-zinc-200 h-[75px] '>
-      <div className='container h-full mx-auto flex justify-between items-center'>
-        <div>Golf Stats</div>
-        <Link to='/clubs'>
-          <button>Clubs</button>
-        </Link>
-        <Link to='/login'>
-          <button>Login</button>
-        </Link>
-        <Link to='/register'>
-          <button>Register</button>
-        </Link>
+    <nav className='w-full h-[90px] bg-[#f6f6f8] border-b border-[#eee] sticky top-0 z-10'>
+      <div className='h-full m-auto container flex justify-between items-center px-3 sm:px-0'>
+        <div className='text-xl sm:text-2xl md:text-3xl text-[#7e7d7d] font-bold'>
+          <span className='text-[#c60021]'>Golf</span> Stats
+        </div>
+        {/* Desktop Links */}
+        <ul className='hidden md:flex'>{navLinkList}</ul>
+        <div
+          className='block md:hidden cursor-pointer z-10'
+          onClick={toggleIcon}>
+          {IsFaTimes ? (
+            <FaTimes size={30} color={'#7e7d7d'} />
+          ) : (
+            <FaBars size={30} color={'#7e7d7d'} />
+          )}
+        </div>
       </div>
-    </div>
+
+      {/* Mobile Links */}
+      {IsFaTimes && (
+        <ul className='absolute md:hidden top-[90px] left-0 w-full h-screen bg-[#f7f7f5] flex flex-col items-center'>
+          {navLinkList}
+        </ul>
+      )}
+    </nav>
   )
 }
 
-export default NavBar
+export default Navbar

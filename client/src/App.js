@@ -81,9 +81,19 @@ const App = () => {
             }
           />
         </Route>
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
+        {/* <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} /> */}
         <Route path='/*' element={<NotFound />} />
+
+        <Route path='/login' element={<Layout />}>
+          <Route index element={<Login />} />
+        </Route>
+        <Route path='/register' element={<Layout />}>
+          <Route index element={<Register />} />
+        </Route>
+        {/* <Route path='*' element={<Layout />}>
+            <Route index element={<NotFound />} />
+          </Route> */}
       </Routes>
     </BrowserRouter>
   )

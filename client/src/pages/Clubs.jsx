@@ -5,8 +5,12 @@ import ClubItem from '../components/ClubItem'
 import ClubList from '../components/ClubList'
 import {Link} from 'react-router-dom'
 import {v4 as uuidv4} from 'uuid'
+import ButtonPrimary from '../components/ButtonPrimary'
+import {useNavigate} from 'react-router-dom'
 
 const Clubs = ({clubData, setClubData, isLoading, setIsLoading}) => {
+  const navigate = useNavigate()
+
   useEffect(() => {
     const getAllClubData = async () => {
       try {
@@ -20,30 +24,42 @@ const Clubs = ({clubData, setClubData, isLoading, setIsLoading}) => {
     getAllClubData()
     // eslint-disable-next-line
   }, [])
+
+  const handleClick = (id) => {
+    navigate(`/clubs/${id}`)
+  }
+
   return (
     <>
-      <div className=''>
-        <div className='container h-full flex gap-4 mx-auto items-center'>
-          <h1 className='text-2xl'>Clubs</h1>
-          <Link to='/clubs/add'>
-            <button className='mt-4 text-center py-3 rounded bg-green-600 text-white hover:bg-green-500 focus:outline-none my-1'>
-              Add CLub
-            </button>
-          </Link>
+      <div className='w-full bg-[#f7f7f5] min-h-screen max-h-min '>
+        <div className='container m-auto pt-10  px-3 sm:px-0'>
+          <div className='w-full flex items-center'>
+            <h1 className='text-2xl font-semibold'>Clubs</h1>
+            <div className='ml-auto'>
+              <Link to='/clubs/add'>
+                <ButtonPrimary text='Add Club' color={'#c60021'} />
+              </Link>
+            </div>
+          </div>
+
+          {isLoading ? (
+            <div>Loading</div>
+          ) : (
+            <>
+              <ClubList>
+                {clubData.map((club) => (
+                  <ClubItem
+                    key={uuidv4()}
+                    club={club}
+                    setClubData={setClubData}
+                    handleClick={handleClick}
+                  />
+                ))}
+              </ClubList>
+            </>
+          )}
         </div>
       </div>
-
-      {isLoading ? (
-        <div>Loading</div>
-      ) : (
-        <>
-          <ClubList>
-            {clubData.map((club) => (
-              <ClubItem key={uuidv4()} club={club} setClubData={setClubData} />
-            ))}
-          </ClubList>
-        </>
-      )}
     </>
   )
 }
