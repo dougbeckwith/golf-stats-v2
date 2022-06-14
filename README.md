@@ -7,7 +7,7 @@ Live version: https://golf-app-v2.herokuapp.com/clubs
 
 ![](images/golf-stats-2.png)
 ![](images/golf-stats-1.png)
-![](images/golf-stats-1.png)
+![](images/golf-stats-3.png)
 
 ## Built with
 
