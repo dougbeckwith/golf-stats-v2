@@ -4,10 +4,9 @@ import {NavLink} from 'react-router-dom'
 
 const Navbar = () => {
   // State And Function Toggle Nav Menu
-  const [IsFaTimes, setIsFaTimes] = useState(false)
+  const [isFaTimes, setIsFaTimes] = useState(false)
   const toggleIcon = () => {
-    setIsFaTimes(!IsFaTimes)
-    // console.log(IsFaTimes)
+    setIsFaTimes(!isFaTimes)
   }
 
   const navLinks = [
@@ -40,16 +39,16 @@ const Navbar = () => {
         {/* Desktop Links */}
         <ul className='hidden md:flex'>{navLinkList}</ul>
         <div className='block md:hidden cursor-pointer z-10'>
-          {IsFaTimes ? (
-            <FaTimes size={30} color={'#7e7d7d'} />
+          {isFaTimes ? (
+            <FaTimes onClick={toggleIcon} size={30} color={'#7e7d7d'} />
           ) : (
-            <FaBars size={30} color={'#7e7d7d'} />
+            <FaBars onClick={toggleIcon} size={30} color={'#7e7d7d'} />
           )}
         </div>
       </div>
 
       {/* Mobile Links */}
-      {IsFaTimes && (
+      {isFaTimes && (
         <ul
           onClick={toggleIcon}
           className='absolute md:hidden top-[90px] left-0 w-full h-screen bg-[#f7f7f5] flex flex-col items-center'>
