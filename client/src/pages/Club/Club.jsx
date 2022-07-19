@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import ShotList from '../components/ShotList'
-import ShotItem from '../components/ShotItem'
+import ShotList from './ShotList'
+import ShotItem from './ShotItem'
 import {v4 as uuidv4} from 'uuid'
-import GolfIcon from '../components/GolfIcon'
-import SmallCard from '../components/SmallCard'
+import GolfIcon from './GolfIcon'
+import SmallCard from './SmallCard'
 
 const Club = ({setClubData}) => {
   const navigate = useNavigate()
