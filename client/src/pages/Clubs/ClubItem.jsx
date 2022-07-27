@@ -19,18 +19,295 @@ const ClubItem = ({club, handleClick}) => {
     <>
       <div
         onClick={() => handleClick(id)}
-        className='flex-wrap font-base gap-1 shadow-lg w-full rounded-md py-3 px-3 mb-2 bg-[#f7f7f5] flex items-center justify-between hover:bg-[#ebebe9] hover:cursor-pointer border border-slate-200'>
-        <p className='font-semibold mr-4'>{club.clubName}</p>
-        <p className='mr-auto'>{club.brand}</p>
-        <div className='flex gap-4'>
-          <p className='w-auto lg:w-28'>
-            Avg Yards:{' '}
-            <span className='font-semibold'>{getAverageYards(club)}</span>
-          </p>
-          <p className=''>
-            Total Shots:{' '}
-            <span className='font-semibold'>{club.totalShots}</span>
-          </p>
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-400 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+          <p className='ml-auto pr-4'>200 Yrds</p>
+        </div>
+        <div className='w-full bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-400 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+          <p className='ml-auto pr-4'>200 Yrds</p>
+        </div>
+        <div className='mr-auto w-10/12 bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-400 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+          <p className='ml-auto pr-4'>200 Yrds</p>
+        </div>
+        <div className='mr-auto w-9/12 bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-400 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+          <p className='ml-auto pr-4'>200 Yrds</p>
+        </div>
+        <div className='mr-auto w-7/12 bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-400 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+          <p className='ml-auto pr-4'>200 Yrds</p>
+        </div>
+        <div className='mr-auto w-5/12 bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-400 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+          <p className='ml-auto pr-4'>200 Yrds</p>
+        </div>
+        <div className='mr-auto w-3/12 bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-400 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+          <p className='ml-auto pr-4'>200 Yrds</p>
+        </div>
+        <div className='mr-auto w-2/12 bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-400 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+          <p className='ml-auto pr-4'>200 Yrds</p>
+        </div>
+        <div className='flex items-center mr-auto w-8/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-lg h-full dark:bg-gray-700'>
+          <div className='flex w-full'></div>
+        </div>
+        <div className='w-full bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-400 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+          <p className='ml-auto pr-4'>200 Yrds</p>
+        </div>
+        <div className='flex items-center mr-auto w-8/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-lg h-full dark:bg-gray-700'>
+          <div className='flex w-full'></div>
+        </div>
+        <div className='w-full bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-400 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+          <p className='ml-auto pr-4'>200 Yrds</p>
+        </div>
+        <div className='flex items-center mr-auto w-8/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-lg h-full dark:bg-gray-700'>
+          <div className='flex w-full'></div>
+        </div>
+        <div className='w-full bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-400 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+          <p className='ml-auto pr-4'>200 Yrds</p>
+        </div>
+        <div className='flex items-center mr-auto w-8/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-lg h-full dark:bg-gray-700'>
+          <div className='flex w-full'></div>
+        </div>
+        <div className='w-full bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-300 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className='m'>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+          <div className='mr-auto w-10/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-6 mb-1 dark:bg-gray-700'>
+            Avg Yards
+          </div>
+        </div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-300 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+        </div>
+        <div className='mr-auto w-8/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-300 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+        </div>
+        <div className='mr-auto w-6/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-300 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+        </div>
+        <div className='mr-auto w-4/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-300 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+        </div>
+        <div className='mr-auto w-3/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-300 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+        </div>
+        <div className='flex items-center mr-auto w-2/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-md h-6 mb-1 dark:bg-gray-700'>
+          <p className='w-full text-right pr-3'>200 yds</p>
+        </div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex items-center w-full h-10 hover:cursor-pointer mb-1'>
+        <div className='w-full  h-full'>
+          <div className='w-12/12 bg-gradient-to-r from-dark-200 to-blue-400 rounded-lg h-full dark:bg-gray-700'>
+            <div className='flex h-full items-center'>
+              <p className='pl-4'>7 Iron</p>
+            </div>
+          </div>
+        </div>
+        <p className='ml-5 w-20'>100 Yrds</p>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-300 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+        </div>
+        <div className='flex items-center mr-auto w-2/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-md h-6 mb-1 dark:bg-gray-700'>
+          <p className='w-full text-right pr-3'>200 yds</p>
+        </div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-300 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+        </div>
+        <div className='flex items-center mr-auto w-2/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-md h-6 mb-1 dark:bg-gray-700'>
+          <p className='w-full text-right pr-3'>200 yds</p>
+        </div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-300 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+        </div>
+        <div className='flex items-center mr-auto w-2/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-md h-6 mb-1 dark:bg-gray-700'>
+          <p className='w-full text-right pr-3'>200 yds</p>
+        </div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-300 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+        </div>
+        <div className='flex items-center mr-auto w-2/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-md h-6 mb-1 dark:bg-gray-700'>
+          <p className='w-full text-right pr-3'>200 yds</p>
+        </div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-300 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+        </div>
+        <div className='flex items-center mr-auto w-6/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-md h-6 mb-1 dark:bg-gray-700'>
+          <p className='w-full text-right pr-3'>200 yds</p>
+        </div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-300 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+        </div>
+        <div className='flex items-center mr-auto w-4/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-md h-6 mb-1 dark:bg-gray-700'>
+          <p className='w-full text-right pr-3'>200 yds</p>
+        </div>
+      </div>
+      <div
+        onClick={() => handleClick(id)}
+        className='text-gray-500 flex flex-col w-full rounded-md py-2 px-3 mb-2 bg-dark-300 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
+        <div className='flex w-full pb-2'>
+          <p className=''>{club.clubName}</p>
+          <span className='px-2'>-</span>
+          <p className=''>{club.brand}</p>
+        </div>
+        <div className='flex items-center mr-auto w-2/12  bg-gradient-to-r from-dark-200 to-blue-400 rounded-md h-6 mb-1 dark:bg-gray-700'>
+          <p className='w-full text-right pr-3'>200 yds</p>
         </div>
       </div>
     </>

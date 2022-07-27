@@ -16,12 +16,12 @@ const Navbar = () => {
   ]
   const navLinkList = navLinks.map((item) => {
     return (
-      <li key={item.id} className='px-3 font-medium py-10 text-[#7e7d7d]'>
+      <li key={item.id} className=' px-3 font-medium py-10'>
         <NavLink
           className={(navData) =>
             navData.isActive
-              ? 'text-[#14A76C] text-lg'
-              : 'hover:border-b hover:border-[#14A76C] duration-200 text-lg'
+              ? '  px-3 py-2  rounded-md text-blue-400 '
+              : 'text-gray-400  hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md'
           }
           to={item.link}>
           {item.title}
@@ -31,18 +31,19 @@ const Navbar = () => {
   })
 
   return (
-    <nav className='w-full h-[90px] bg-[#f6f6f8] border-b border-[#eee] sticky top-0 z-10'>
-      <div className='h-full m-auto container flex justify-between items-center px-3 sm:px-0'>
-        <div className='text-xl sm:text-2xl md:text-3xl text-black font-bold'>
-          <span className='text-[#14A76C]'>Golf</span> Stats
-        </div>
+    // border-b-2 border-opacity-50 border-gray-200
+    <nav className='  w-full h-[90px] bg-dark-400 '>
+      <div className='h-full m-auto container flex justify-between items-center'>
+        <p className='text-xl sm:text-2xl md:text-3xl  font-semibold text-blue-400'>
+          Golf Stats
+        </p>
         {/* Desktop Links */}
         <ul className='hidden md:flex'>{navLinkList}</ul>
         <div className='block md:hidden cursor-pointer z-10'>
           {isFaTimes ? (
-            <FaTimes onClick={toggleIcon} size={30} color={'#7e7d7d'} />
+            <FaTimes onClick={toggleIcon} size={30} color={'gray-200'} />
           ) : (
-            <FaBars onClick={toggleIcon} size={30} color={'#7e7d7d'} />
+            <FaBars onClick={toggleIcon} size={30} color={'gray-200'} />
           )}
         </div>
       </div>
@@ -51,7 +52,7 @@ const Navbar = () => {
       {isFaTimes && (
         <ul
           onClick={toggleIcon}
-          className='absolute md:hidden top-[90px] left-0 w-full h-screen bg-[#f7f7f5] flex flex-col items-center'>
+          className='absolute md:hidden top-[90px] left-0 w-full h-screen bg-gray-800 flex flex-col items-center'>
           {navLinkList}
         </ul>
       )}

@@ -30,13 +30,19 @@ const Clubs = ({clubData, setClubData, isLoading, setIsLoading}) => {
 
   return (
     <>
-      <div className='w-full bg-[#f7f7f5] min-h-screen max-h-min '>
-        <div className='container m-auto pt-4 px-3 sm:px-0'>
-          <div className='w-full flex items-center mb-3'>
-            <h1 className='tittle'>Clubs</h1>
+      <div className='pt-7 w-full bg-dark-400 min-h-screen max-h-min'>
+        <div className='container m-auto'>
+          <div className='w-full flex items-center mb-3 '>
+            <h1 className='text-gray-500 text-2xl font-semibold'>
+              Club Distances
+            </h1>
             <div className='ml-auto'>
               <Link to='/clubs/add'>
-                <button className='btn--small btn--primary'>Add Club</button>
+                <button
+                  type='button'
+                  className='px-4 py-2 text-sm font-medium rounded-md shadow-sm text-gray-400 bg-blue-400 hover:bg-blue-300 '>
+                  Add Club
+                </button>
               </Link>
             </div>
           </div>

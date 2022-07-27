@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn {
+/* .btn {
     @apply text-base font-medium rounded-lg py-3 px-4;
   }
    .btn--primary {
@@ -26,5 +26,5 @@
 
   .tittle {
     @apply text-4xl text-black;
-  }
+  } */
 
