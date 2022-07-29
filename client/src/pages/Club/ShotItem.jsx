@@ -1,30 +1,27 @@
 import React from 'react'
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
+import {MdOutlineGolfCourse} from 'react-icons/md'
 
-const ShotItem = ({
-  shotId,
-  shot,
-  setClub,
-  club,
-  setAvgYards,
-  getAverageYards,
-}) => {
+const ShotItem = ({setClub, club, shot}) => {
   const params = useParams()
   const id = params.id
-  const handlePatch = async () => {
+
+  // UPDATE club remove (shot)
+  const deleteShot = async () => {
     try {
-      const result = await axios.patch(
+      const response = await axios.patch(
         `${process.env.REACT_APP_URL}/api/${id}`,
         {
           deleteShot: true,
+          shotId: shot.id,
           club: club,
-          shot: null,
-          shotId: shotId,
         }
       )
-      setClub(result.data)
-      setAvgYards(getAverageYards(result.data))
+      // Update club state and update avgYards state
+      if (response.status === 200) {
+        setClub(response.data)
+      }
     } catch (err) {
       console.log(err)
     }
@@ -32,22 +29,28 @@ const ShotItem = ({
 
   return (
     <>
-      <div className='rounded-md shadow-lg w-full m-auto sm:w-60 py-3 px-3 bg-[#f7f7f5] border border-slate-200'>
-        <div className=' text-xl flex items-center'>
-          <p className='text-[#7e7d7d] text-lg'>
-            Yards:{' '}
-            <span className='font-semibold text-[#14A76C]'> {shot.yards}</span>
-          </p>
-        </div>
-
-        <div>
+      <div className='py-2 rounded-md px-2 bg-dark-300'>
+        <div className='flex  items-center gap-5'>
+          <div>
+            <div className='w-[50px] h-[50px]  flex justify-center items-center rounded-md'>
+              <MdOutlineGolfCourse size={40} color='#007acc' />
+            </div>
+          </div>
+          <div>
+            <p className='text-gray-400 text-sm'>Yards</p>
+            <div className='text-blue-400 text-xl font-bold'>
+              <span>100</span>
+            </div>
+          </div>
           <button
-            className='btn--extra--small btn--secondary'
-            onClick={handlePatch}>
+            onClick={deleteShot}
+            className='h-[40px] px-2 py-1 text-sm font-medium rounded-md shadow-sm text-gray-400 bg-gray-600 hover:bg-red '>
             Delete
           </button>
         </div>
       </div>
+
+      {/*  */}
     </>
   )
 }

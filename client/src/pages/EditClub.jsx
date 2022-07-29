@@ -2,21 +2,21 @@ import React from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import {useState, useEffect} from 'react'
-const EditClub = ({setIsLoading, isLoading}) => {
+const EditClub = () => {
   const params = useParams()
   const id = params.id
-
   const navigate = useNavigate()
-  const [club, setClub] = useState('')
+
+  const [isLoading, setIsLoading] = useState(true)
   const [clubName, setClubName] = useState('')
   const [clubBrand, setClubBrand] = useState('')
   const [nameMessage, setNameMessage] = useState(false)
   const [brandMessage, setBrandMessage] = useState(false)
 
+  // GET club from database
   useEffect(() => {
     const fetchClub = async () => {
       const result = await axios.get(`${process.env.REACT_APP_URL}/api/${id}`)
-      setClub(result.data)
       setClubName(result.data.clubName)
       setClubBrand(result.data.brand)
       setIsLoading(false)
@@ -24,7 +24,6 @@ const EditClub = ({setIsLoading, isLoading}) => {
     fetchClub()
     // eslint-disable-next-line
   }, [])
-
   // Simple Check to see if input is empty
   const inputValid = (input) => {
     if (input !== '') {
@@ -40,6 +39,7 @@ const EditClub = ({setIsLoading, isLoading}) => {
     }
   }
 
+  // UPDATE club in database (update clubName and clubBrand)
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (inputValid(clubName) && inputValid(clubBrand)) {
@@ -47,88 +47,93 @@ const EditClub = ({setIsLoading, isLoading}) => {
         await axios.patch(`${process.env.REACT_APP_URL}/api/${id}`, {
           clubName: clubName,
           clubBrand: clubBrand,
-          shot: null,
-          totalShots: null,
-          club: club,
-          deleteShot: null,
         })
+        // Reset Input Fields
         setClubName('')
         setClubBrand('')
-        navigateBack()
+        navigateToClub()
       } catch (err) {
         console.log(err)
       }
     }
   }
 
+  // Remove error message and update clubName state
   const handleNameChange = (e) => {
     setNameMessage(false)
     setClubName(e.target.value)
   }
+
+  // Remove error message and update clubBrand state
   const handleBrandChange = (e) => {
     setBrandMessage(false)
     setClubBrand(e.target.value)
   }
 
-  const navigateBack = () => {
+  // Navigate back to current club page
+  const navigateToClub = () => {
     navigate(`/clubs/${id}`)
   }
+
   return (
     <>
       {isLoading ? (
         <div>Loading</div>
       ) : (
-        <div className='min-h-screen pt-2 md:pt-10'>
-          <div className='container max-w-[600px] mx-auto flex-1 flex flex-col items-center justify-center px-2'>
-            <div className='bg-white px-3 py-4 md:px-6 md:py-8 md:rounded md:shadow-xl md:border-2 text-black w-full'>
-              <h1 className='pb-5 text-2xl'>Edit Club</h1>
+        <div className='h-screen bg-dark-500 flex pt-10 sm:pt-24 justify-center text-gray-400'>
+          <div className='container max-w-[600px]'>
+            <div className='sm:bg-dark-400 border-0 md:border-2 md:border-gray-600 px-3 py-4 md:px-6 md:py-8 sm:rounded-lg w-full'>
               <form>
                 <div>
-                  <label htmlFor='club'>Club</label>
+                  <div className='pb-1 pl-1'>
+                    <label htmlFor='club' className='text-lg text-gray-400'>
+                      Club
+                    </label>
+                  </div>
                   <input
                     id='club'
                     type='text'
-                    value={clubName}
                     onChange={handleNameChange}
-                    className='block border-2 w-full p-3 rounded focus:outline-none focus:border-slate-400  focus:ring-slate-400'
-                    placeholder='Club'
+                    value={clubName}
+                    className='bg-dark-200 placeholder-opacity-60 placeholder-gray-600 w-full p-3 rounded-md border-2 border-dark-200 focus:outline-none focus:border-blue-400  focus:ring-blue-400'
+                    placeholder='7 Iron'
                   />
                   <p
                     className={
-                      nameMessage ? 'text-xs h-4 text-red-600' : 'invisible h-4'
+                      nameMessage ? 'text-sm h-4 text-red' : 'invisible h-4'
                     }>
-                    Please a enter brand
+                    Please enter a club.
                   </p>
                 </div>
-                <div>
-                  <label htmlFor='brand'>Brand</label>
+                <div className='pt-2 pb-4'>
+                  <div className='pb-2 pl-1'>
+                    <label htmlFor='brand' className='text-lg'>
+                      Brand
+                    </label>
+                  </div>
                   <input
                     id='brand'
-                    style={{padding: '15px'}}
                     type='text'
-                    value={clubBrand}
                     onChange={handleBrandChange}
-                    className='block border-2 w-full p-3 rounded focus:outline-none focus:border-slate-400  focus:ring-slate-400'
-                    placeholder='Brand'
+                    value={clubBrand}
+                    className='bg-dark-200 placeholder-opacity-60 placeholder-gray-600 w-full p-3 rounded-md border-2 border-dark-200 focus:outline-none focus:border-blue-400  focus:ring-blue-400'
+                    placeholder='TaylorMade'
                   />
-
                   <p
                     className={
-                      brandMessage
-                        ? 'text-xs h-4 text-red-600'
-                        : 'invisible h-4'
+                      brandMessage ? 'text-sm h-4 text-red' : 'invisible h-4'
                     }>
-                    Please a enter brand
+                    Please enter a brand.
                   </p>
                 </div>
                 <button
                   onClick={handleSubmit}
-                  className='mt-4 w-full btn btn--primary'>
+                  className='mt-4 w-full bg-blue-400 py-3 rounded-md hover:bg-blue-300'>
                   Submit
                 </button>
                 <button
-                  onClick={navigateBack}
-                  className='mt-4 w-full btn btn--secondary'>
+                  onClick={navigateToClub}
+                  className='mt-4 w-full btn bg-gray-500 text-dark-500 py-3 rounded-md hover:bg-gray-600'>
                   Cancel
                 </button>
               </form>

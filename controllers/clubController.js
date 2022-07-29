@@ -1,100 +1,119 @@
 const Club = require('../models/Club')
 
+// GET all clubs
 const getClubs = async (req, res) => {
   try {
-    const data = await Club.find({})
-    res.send(data)
-  } catch (err) {
-    console.log(err)
-    res.status(500).send('Sever Error')
+    const clubs = await Club.find({})
+    res.status(200).send(clubs)
+  } catch (error) {
+    res.status(400).send({error: error.message})
   }
 }
 
-const addClub = async (req, res) => {
+// GET a single club
+const getClub = async (req, res) => {
+  const {id} = req.params
+
   try {
-    const data = req.body
-    const newClub = new Club(data)
-    await newClub.save()
-    const newClubData = await Club.find({})
-    res.send(newClubData)
+    const club = await Club.findById(id)
+    res.status(200).send(club)
+  } catch (error) {
+    res.status(400).send({error: error.message})
+  }
+}
+
+// CREATE new club
+const createClub = async (req, res) => {
+  try {
+    const club = await Club.create(req.body)
+    res.status(200).send(club)
   } catch {
-    console.log(err)
-    res.status(500).send('Sever Error')
+    res.status(400).send({error: error.message})
   }
 }
 
 const updateClub = async (req, res) => {
   const id = req.params.id
-  const {clubName, clubBrand, shot, club, deleteShot, shotId} = req.body
+  const {clubName, clubBrand, shot, club, deleteShot, avgYards, shotId} =
+    req.body
+  console.log('club', club)
+  console.log(typeof club)
+  console.log('shot', shot)
+  console.log(typeof shot)
+  console.log('avgYards', avgYards)
+  console.log(typeof avgYards)
+  console.log('shotId', shotId)
+  console.log(typeof shotId)
+  console.log('clubName', clubName)
+  console.log('clubBrand', clubBrand)
+
   if (clubName && clubBrand) {
     try {
       await Club.findByIdAndUpdate(id, {
         clubName: clubName,
         brand: clubBrand,
       })
-      res.send('Success')
-    } catch (err) {
-      console.log(err)
-      res.status(500).send('Server Error')
+      res.status(200).send('Success')
+    } catch (error) {
+      res.status(400).send({error: error.message})
     }
   }
-  if (shot !== null) {
-    console.log('shot', shot)
-    await Club.findOneAndUpdate(
-      {_id: id},
-      {
-        shots: [...club.shots, shot],
-        totalShots: club.totalShots + 1,
-      }
-    )
-    const data = await Club.findOne({_id: id})
-    res.send(data)
+  if (shot) {
+    try {
+      const clubs = await Club.findOneAndUpdate(
+        {_id: id},
+        {
+          shots: [...club.shots, shot],
+          totalShots: club.totalShots + 1,
+        },
+        {new: true}
+      )
+      console.log(clubs)
+      // const clubs = await Club.findOne({_id: id})
+      res.status(200).send(clubs)
+    } catch (error) {
+      res.status(400).send({error: error.message})
+    }
   }
+
   if (deleteShot === true) {
-    console.log(deleteShot)
-    console.log(`id`, id)
-    console.log(`shotId:`, shotId)
-    await Club.findOneAndUpdate(
-      {_id: id},
-      {
-        shots: club.shots.filter((item) => {
-          return item.yardsId !== shotId
-        }),
-        totalShots: club.totalShots - 1,
-      }
-    )
-    const data = await Club.findOne({_id: id})
-    res.send(data)
+    try {
+      const data = await Club.findOneAndUpdate(
+        {_id: id},
+        {
+          shots: club.shots.filter((item) => {
+            return item.id !== shotId
+          }),
+          avgYards: avgYards,
+          totalShots: club.totalShots - 1,
+        },
+        {new: true}
+      )
+      // const data = await Club.findOne({_id: id})
+      res.status(200).send(data)
+    } catch (error) {
+      res.status(400).send({error: error.message})
+    }
   }
 }
 
-const getClubById = async (req, res) => {
-  try {
-    const id = req.params.id
-    const data = await Club.findById(id)
-    res.send(data)
-  } catch (err) {
-    console.log(err)
-    res.status(500).send('Sever Error')
-  }
-}
+// DELETE a club
+const deleteClub = async (req, res) => {
+  const {id} = req.params
 
-const deleteClubById = async (req, res) => {
   try {
-    const id = req.params.id
     await Club.findByIdAndDelete(id)
-    const data = await Club.find({})
-    res.send(data)
-  } catch (err) {
-    console.log(err)
-    res.status(500).send('Sever Error')
+    const clubs = await Club.find({})
+    res.status(200).send(clubs)
+  } catch (error) {
+    res.status(400).send({error: error.message})
   }
 }
 
 module.exports = {
-  addClub,
+  createClub,
+  getClub,
   getClubs,
   updateClub,
-  getClubById,
-  deleteClubById,
+  deleteClub,
 }

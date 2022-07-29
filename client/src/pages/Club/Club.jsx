@@ -2,74 +2,76 @@ import React, {useEffect, useState} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import {v4 as uuidv4} from 'uuid'
+import {GiGolfTee} from 'react-icons/gi'
+import {getAverageYards} from '../../helpers'
 import ShotList from './ShotList'
 import ShotItem from './ShotItem'
-import {v4 as uuidv4} from 'uuid'
-import GolfIcon from './GolfIcon'
-import SmallCard from './SmallCard'
+import NavBar from '../../components/NavBar'
 
-const Club = ({setClubData}) => {
+const Club = () => {
   const navigate = useNavigate()
   const params = useParams()
   const id = params.id
   const [club, setClub] = useState()
   const [isLoading, setIsLoading] = useState(true)
-  const [shot, setShot] = useState(0)
-  const [avgYards, setAvgYards] = useState(0)
+  const [shot, setShot] = useState('')
 
+  // Navigate to clubs page
   const navigateToClubs = () => {
     navigate('/clubs')
   }
-  const getAverageYards = (club) => {
-    let totalYards = 0
-    let shots = club.totalShots
-    if (shots === 0) {
-      return 0
-    } else {
-      club.shots.forEach((shot) => {
-        totalYards += parseInt(shot.yards)
-      })
-      return (totalYards / shots).toFixed()
-    }
-  }
 
+  // GET club and set club state
   useEffect(() => {
+    console.log('api call from club')
     const fetchClub = async () => {
-      const result = await axios.get(`${process.env.REACT_APP_URL}/api/${id}`)
-      setClub(result.data)
-      setAvgYards(getAverageYards(result.data))
+      const response = await axios.get(`${process.env.REACT_APP_URL}/api/${id}`)
+      setClub(response.data)
       setIsLoading(false)
     }
     fetchClub()
     // eslint-disable-next-line
   }, [])
 
+  // DELETE club and navigate to clubs page
   const handleDelete = async () => {
-    try {
-      const result = await axios.delete(
-        `${process.env.REACT_APP_URL}/api/${id}`
-      )
-      setClubData(result.data)
-      navigateToClubs()
-    } catch (err) {
-      console.log(err)
+    const answer = prompt(
+      'Are you sure you want to delete? enter delete to confirm'
+    )
+    if (answer === 'delete') {
+      try {
+        const response = await axios.delete(
+          `${process.env.REACT_APP_URL}/api/${id}`
+        )
+        if (response.status === 200) {
+          navigateToClubs()
+        }
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 
+  // UPDATE club (add shot)
   const handleAddShot = async (e) => {
     e.preventDefault()
+
+    // return if input invalid
+    if (shot === '0' || shot === null || shot === '') return
     try {
-      const result = await axios.patch(
+      // UPDATE club (add shot)
+      const response = await axios.patch(
         `${process.env.REACT_APP_URL}/api/${id}`,
         {
-          club,
-          deleteShot: null,
-          shot: {yards: shot, yardsId: uuidv4()},
+          club: club,
+          shot: {yards: parseInt(shot), id: uuidv4()},
         }
       )
-      setClub(result.data)
-      setAvgYards(getAverageYards(result.data))
-      setShot('')
+      if (response.status === 200) {
+        setClub(response.data)
+        setShot('')
+      }
     } catch (err) {
       console.log(err)
     }
@@ -77,78 +79,95 @@ const Club = ({setClubData}) => {
 
   return (
     <>
-      <div className='w-full bg-[#f7f7f5] min-h-screen max-h-min '>
-        <div className='container m-auto pt-4 px-3 sm:px-0'>
+      <NavBar />
+      <div className='w-full bg-dark-400 text-gray-500 min-h-screen max-h-min '>
+        <div className='container m-auto pt-4 xl:pt-16 px-3 sm:px-0'>
           {isLoading ? (
             <div>Loading</div>
           ) : (
-            <div className=''>
+            <>
+              <div className='flex md:flex-row flex-col items-center pt-3 pb-5 w-full'>
+                <div className='flex items-center pb-2 text-gray-400'>
+                  <p className='font-semibold text-2xl '>{club.clubName}</p>
+                  <span className='px-1 text-2xl md:text-md'>-</span>
+                  <p className='text-2xl'>{club.brand}</p>
+                </div>
+                <div className='mx-auto md:mx-0 md:ml-auto flex  gap-1'>
+                  <Link to={`/clubs/${id}/edit`}>
+                    <button className=' px-2 py-2 text-sm font-medium rounded-md shadow-sm text-gray-400 bg-blue-400 hover:bg-blue-300 '>
+                      Edit Club
+                    </button>
+                  </Link>
+                  <button
+                    onClick={handleDelete}
+                    className='px-2 py-2 text-sm font-medium rounded-md shadow-sm text-gray-400 bg-red hover:bg-relaxRed '>
+                    Delete Club
+                  </button>
+                </div>
+              </div>
+
               <div className=''>
-                <p className='font-semibold text-lg'>{club.clubName}</p>
-                <p>{club.brand}</p>
-                <form className='w-full pt-4 pb-2'>
-                  <div>
+                <div className='w-full flex flex-col md:flex-row'>
+                  <form className='mb-2 w-full  flex flex-col py-5 px-6 rounded-md bg-dark-300'>
+                    <label htmlFor='shot'>Yards</label>
                     <input
-                      onChange={(e) => setShot(e.target.value)}
-                      className='border-2 p-2 rounded focus:outline-none focus:border-slate-400  focus:ring-slate-400'
+                      name='shot'
                       value={shot}
+                      onChange={(e) => setShot(e.target.value)}
+                      className='w-full mb-2 bg-dark-100 p-2 rounded placeholder-gray-600'
                       type='number'
-                      placeholder='Yards'
+                      placeholder='150'
                     />
                     <button
-                      className='btn--small btn--primary'
-                      onClick={handleAddShot}>
+                      onClick={handleAddShot}
+                      className='px-4 py-2 text-sm font-medium rounded-md shadow-sm text-gray-300 bg-blue-400 hover:bg-blue-300 '>
                       Add Shot
                     </button>
+                  </form>
+
+                  <div className='w-full flex items-center pb-2 md:justify-center '>
+                    <div className='w-[75px] h-[75px] bg-blue-400 flex justify-center items-center rounded-md'>
+                      <GiGolfTee size={40} color='white' />
+                    </div>
+                    <div className='pl-5'>
+                      <p className='text-gray-400 text-sm'>Avg Yards</p>
+                      <div className='text-blue-400 text-xl font-bold flex'>
+                        <span>{getAverageYards(club)}</span>
+                      </div>
+                    </div>
                   </div>
-                </form>
+
+                  <div className='w-full flex items-center pb-2 md:justify-center'>
+                    <div className='w-[75px] h-[75px] bg-blue-400 flex justify-center items-center rounded-md'>
+                      <GiGolfTee size={40} color='white' />
+                    </div>
+                    <div className='pl-5'>
+                      <p className='text-gray-400 text-sm'>Total Shots</p>
+                      <div className='text-blue-400 text-xl font-bold flex'>
+                        <span>{club.totalShots}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h1 className='pt-10 text-2xl'>Shots</h1>
+                {isLoading ? (
+                  <div>Loading</div>
+                ) : (
+                  <ShotList>
+                    {club.shots.map((shot) => {
+                      return (
+                        <ShotItem
+                          key={uuidv4()}
+                          setClub={setClub}
+                          shot={shot}
+                          club={club}
+                        />
+                      )
+                    })}
+                  </ShotList>
+                )}
               </div>
-
-              <SmallCard
-                icon={<GolfIcon />}
-                title='Avg Yards'
-                value={avgYards}
-              />
-              <SmallCard
-                icon={<GolfIcon />}
-                title='Total Shots'
-                value={club.totalShots}
-              />
-
-              <div className='flex gap-2 pt-2'>
-                <Link to={`/clubs/${id}/edit`}>
-                  <button className='btn--small btn--secondary'>
-                    Edit Club
-                  </button>
-                </Link>
-                <button
-                  className='btn--small btn--danger'
-                  onClick={handleDelete}>
-                  Delete Club
-                </button>
-              </div>
-            </div>
-          )}
-          <h2 className='text-xl font-semibold pt-5 pb-4'>Shots</h2>
-
-          {isLoading ? (
-            <div>Loading</div>
-          ) : (
-            <ShotList>
-              {club.shots.map((shot) => {
-                return (
-                  <ShotItem
-                    key={uuidv4()}
-                    shotId={shot.yardsId}
-                    setClub={setClub}
-                    shot={shot}
-                    club={club}
-                    setAvgYards={setAvgYards}
-                    getAverageYards={getAverageYards}
-                  />
-                )
-              })}
-            </ShotList>
+            </>
           )}
         </div>
       </div>

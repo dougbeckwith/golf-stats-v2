@@ -7,8 +7,8 @@ import Club from './pages/Club/Club'
 import EditClub from './pages/EditClub'
 import Landing from './pages/Landing'
 import Layout from './components/Layout'
-import Login from './pages/Login'
-import Register from './pages/Register'
+// import Login from './pages/Login'
+// import Register from './pages/Register'
 import NotFound from './pages/NotFound'
 
 import axios from 'axios'
@@ -16,9 +16,11 @@ import axios from 'axios'
 const App = () => {
   const [clubData, setClubData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+
   useEffect(() => {
     // Call Server to get Club Data
     const getAllClubData = async () => {
+      console.log('api call from app')
       try {
         const result = await axios.get(`${process.env.REACT_APP_URL}/api`)
         setClubData(result.data)
@@ -47,53 +49,13 @@ const App = () => {
               />
             }
           />
-          <Route
-            path=':id'
-            element={
-              <Club
-                clubData={clubData}
-                setClubData={setClubData}
-                isLoading={isLoading}
-                setIsLoading={setIsLoading}
-              />
-            }
-          />
-          <Route
-            path='add'
-            element={
-              <AddClub
-                clubData={clubData}
-                setClubData={setClubData}
-                isLoading={isLoading}
-                setIsLoading={setIsLoading}
-              />
-            }
-          />
-          <Route
-            path=':id/edit'
-            element={
-              <EditClub
-                clubData={clubData}
-                setClubData={setClubData}
-                isLoading={isLoading}
-                setIsLoading={setIsLoading}
-              />
-            }
-          />
+          <Route path=':id' element={<Club />} />
+          <Route path='add' element={<AddClub setClubData={setClubData} />} />
+          <Route path=':id/edit' element={<EditClub />} />
         </Route>
-        {/* <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} /> */}
         <Route path='/*' element={<NotFound />} />
-
-        <Route path='/login' element={<Layout />}>
-          <Route index element={<Login />} />
-        </Route>
-        <Route path='/register' element={<Layout />}>
-          <Route index element={<Register />} />
-        </Route>
-        {/* <Route path='*' element={<Layout />}>
-            <Route index element={<NotFound />} />
-          </Route> */}
+        {/* <Route index element={<Login />} />
+        <Route index element={<Register />} /> */}
       </Routes>
     </BrowserRouter>
   )

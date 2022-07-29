@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react'
 // import axios from 'axios'
 import {Link} from 'react-router-dom'
 import {FaCheckSquare} from 'react-icons/fa'
-import ComingSoon from '../components/ComingSoon'
 
 const USER_REGEX = /^.{4,}$/
 const PWD_REGEX = /^.{5,}$/
@@ -91,7 +90,6 @@ const Login = () => {
         </section>
       ) : ( */}
 
-      <ComingSoon text={'Login'} />
       <div className='pt-6 flex flex-col'>
         <div className='container max-w-[600px] mx-auto flex-1 flex flex-col items-center justify-center px-2'>
           <div className='bg-white px-6 py-8 rounded shadow-xl border-2 text-black w-full'>

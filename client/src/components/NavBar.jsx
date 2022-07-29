@@ -11,18 +11,22 @@ const Navbar = () => {
 
   const navLinks = [
     {title: 'Clubs', id: 1, link: '/clubs'},
-    {title: 'Login', id: 2, link: '/login'},
-    {title: 'Register', id: 3, link: '/register'},
+    // {title: 'Login', id: 2, link: '/login'},
+    // {title: 'Register', id: 3, link: '/register'},
   ]
+
+  // Nav active for future
+  // {(navData) =>
+  //   navData.isActive
+  //     ? '  px-3 py-2  rounded-md text-blue-400 '
+  //     : 'text-gray-400  hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md'
+  // }
+
   const navLinkList = navLinks.map((item) => {
     return (
       <li key={item.id} className=' px-3 font-medium py-10'>
         <NavLink
-          className={(navData) =>
-            navData.isActive
-              ? '  px-3 py-2  rounded-md text-blue-400 '
-              : 'text-gray-400  hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md'
-          }
+          className='text-gray-400  hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md'
           to={item.link}>
           {item.title}
         </NavLink>
@@ -31,19 +35,19 @@ const Navbar = () => {
   })
 
   return (
-    // border-b-2 border-opacity-50 border-gray-200
-    <nav className='  w-full h-[90px] bg-dark-400 '>
-      <div className='h-full m-auto container flex justify-between items-center'>
-        <p className='text-xl sm:text-2xl md:text-3xl  font-semibold text-blue-400'>
+    //border-b-2 border-opacity-10 border-gray-200
+    <nav className='w-full h-[90px] bg-dark-500 '>
+      <div className='h-full mx-auto flex justify-between items-center px-3 sm:px-0'>
+        <p className='sm:pl-4 text-xl sm:text-2xl md:text-3xl  font-semibold text-blue-400'>
           Golf Stats
         </p>
         {/* Desktop Links */}
         <ul className='hidden md:flex'>{navLinkList}</ul>
         <div className='block md:hidden cursor-pointer z-10'>
           {isFaTimes ? (
-            <FaTimes onClick={toggleIcon} size={30} color={'gray-200'} />
+            <FaTimes onClick={toggleIcon} size={30} color={'#9ca3af'} />
           ) : (
-            <FaBars onClick={toggleIcon} size={30} color={'gray-200'} />
+            <FaBars onClick={toggleIcon} size={30} color={'#9ca3af'} />
           )}
         </div>
       </div>
