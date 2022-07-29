@@ -39,7 +39,7 @@ const ShotItem = ({setClub, club, shot}) => {
           <div>
             <p className='text-gray-400 text-sm'>Yards</p>
             <div className='text-blue-400 text-xl font-bold'>
-              <span>100</span>
+              <span>{shot.yards}</span>
             </div>
           </div>
           <button
