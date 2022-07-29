@@ -5,7 +5,7 @@ const Landing = () => {
   return (
     <div className='bg-dark-400 h-screen flex justify-center items-center'>
       <div className='pt-20 pb-16 text-center text-gray-400 lg:pt-32 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-        <h1 className='mx-auto max-w-4xl font-display text-4xl font-medium tracking-tight text-slate-900 sm:text-7xl'>
+        <h1 className='mx-auto max-w-4xl font-display text-4xl font-medium tracking-tight text-slate-900 sm:text-5xl md:7xl'>
           Club data{' '}
           <span className='relative whitespace-nowrap text-blue-600'>
             <svg
@@ -20,8 +20,8 @@ const Landing = () => {
           for golfers.
         </h1>
         <p className='pt-10 mx-auto mt-6 max-w-2xl text-lg tracking-tight text-gray-500'>
-          Play the game your way. Easily track your club data to remove strokes
-          from your game. Dive deep into your club data.
+          Play the game your way. Easily track club data to remove strokes from
+          your game. Dive deep into your club data.
         </p>
         <div className='mt-10 flex justify-center gap-x-6'>
           {/* <Link to='/login'>
@@ -44,7 +44,7 @@ const Landing = () => {
             </button> */}
             <button
               type='button'
-              className='px-4 py-2 text-sm font-medium rounded-md shadow-sm text-gray-300 bg-blue-400 hover:bg-blue-300 '>
+              className='px-10 py-2 md:px-10 text-sm font-medium rounded-md shadow-sm text-gray-300 bg-blue-400 hover:bg-blue-300 '>
               Demo
             </button>
           </Link>
