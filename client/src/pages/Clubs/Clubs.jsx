@@ -32,20 +32,27 @@ const Clubs = ({clubData, setClubData, isLoading, setIsLoading}) => {
 
   return (
     <>
-      <div className='px-5 lg:px-0 pt-7 w-full bg-dark-400 min-h-screen max-h-min'>
+      <div className='px-5 lg:px-0 lg:pt-7 w-full bg-dark-400 min-h-screen max-h-min'>
         <div className='container m-auto'>
           <div className='pb-10 pt-10'>
-            <h1 className='text-gray-400 text-center mx-auto max-w-4xl font-display text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl'>
-              Add <span className='relative text-blue-400'>clubs</span> here
-              click a{' '}
-              <span className='relative whitespace-nowrap text-blue-600'>
-                <span className='relative text-blue-400'>club</span>
+            <h1 className='text-gray-500 text-center mx-auto max-w-4xl font-display text-3xl font-medium tracking-tight sm:text-4xl'>
+              <span className='text-gray-400'>Welcome</span> to your{' '}
+              <span className='relative text-blue-400'>club</span> distance
+              overview.{' '}
+              <span className='relative whitespace-nowrap text-blue-600 hidden lg:inline-block'>
+                {' '}
+                Record{' '}
+                <span className='hidden lg:inline-block relative text-gray-400'>
+                  shots
+                </span>
               </span>{' '}
-              to add shots and <span className='text-gray-600'>view</span> more.
+              <span className='hidden lg:inline-block'>
+                to track distances.
+              </span>
             </h1>
           </div>
           <div className='w-full flex items-center mb-3 '>
-            <h1 className='text-gray-500 text-2xl font-semibold'>
+            <h1 className='text-gray-400 text-2xl font-semibold'>
               Club Distances
             </h1>
             <div className='ml-auto'>

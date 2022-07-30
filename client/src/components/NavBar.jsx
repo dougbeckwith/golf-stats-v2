@@ -56,7 +56,7 @@ const Navbar = () => {
       {isFaTimes && (
         <ul
           onClick={toggleIcon}
-          className=' text-2xl absolute md:hidden top-[90px] left-0 w-full h-screen bg-dark-500 flex flex-col items-center'>
+          className=' text-2xl absolute md:hidden top-[90px] left-0 w-full h-screen bg-dark-500 flex flex-col items-center z-10'>
           {navLinkList}
         </ul>
       )}

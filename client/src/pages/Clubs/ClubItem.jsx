@@ -12,8 +12,8 @@ const ClubItem = ({club, handleClick}) => {
         className='text-gray-500 flex flex-col w-full rounded-md  mb-2 bg-dark-400 items-center justify-between hover:bg-dark-200 hover:cursor-pointer'>
         <div className='flex w-full pb-2'>
           <p className=''>{club.clubName}</p>
-          <span className='px-2'>-</span>
-          <p className=''>{club.brand}</p>
+          <span className='px-2 hidden sm:block'>-</span>
+          <p className='hidden sm:block'>{club.brand}</p>
           {avgYards === 0 ? (
             <p className='ml-auto pr-4'>0 yrds</p>
           ) : (
