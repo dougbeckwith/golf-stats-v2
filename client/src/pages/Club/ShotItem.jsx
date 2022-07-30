@@ -44,7 +44,7 @@ const ShotItem = ({setClub, club, shot}) => {
           </div>
           <button
             onClick={deleteShot}
-            className='h-[40px] px-2 py-1 text-sm font-medium rounded-md shadow-sm text-gray-400 bg-gray-600 hover:bg-red '>
+            className='h-[40px] px-2 py-1 text-sm font-medium rounded-md shadow-sm text-dark-500 bg-gray-500 hover:bg-red '>
             Delete
           </button>
         </div>

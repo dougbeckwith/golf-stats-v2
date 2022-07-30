@@ -43,7 +43,7 @@ const Navbar = () => {
         </p>
         {/* Desktop Links */}
         <ul className='hidden md:flex'>{navLinkList}</ul>
-        <div className='block md:hidden cursor-pointer z-10'>
+        <div className='block md:hidden cursor-pointer z-10 pl-2'>
           {isFaTimes ? (
             <FaTimes onClick={toggleIcon} size={30} color={'#9ca3af'} />
           ) : (
@@ -56,7 +56,7 @@ const Navbar = () => {
       {isFaTimes && (
         <ul
           onClick={toggleIcon}
-          className='absolute md:hidden top-[90px] left-0 w-full h-screen bg-dark-500 flex flex-col items-center'>
+          className=' text-2xl absolute md:hidden top-[90px] left-0 w-full h-screen bg-dark-500 flex flex-col items-center'>
           {navLinkList}
         </ul>
       )}

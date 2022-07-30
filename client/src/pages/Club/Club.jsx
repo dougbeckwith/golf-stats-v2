@@ -100,7 +100,7 @@ const Club = () => {
                   </Link>
                   <button
                     onClick={handleDelete}
-                    className='px-2 py-2 text-sm font-medium rounded-md shadow-sm text-gray-400 bg-red hover:bg-relaxRed '>
+                    className='px-2 py-2 text-sm font-medium rounded-md shadow-sm text-dark-400 bg-gray-500 hover:bg-red '>
                     Delete Club
                   </button>
                 </div>
@@ -114,7 +114,7 @@ const Club = () => {
                       name='shot'
                       value={shot}
                       onChange={(e) => setShot(e.target.value)}
-                      className='w-full mb-2 bg-dark-100 p-2 rounded placeholder-gray-600'
+                      className='text-gray-200 w-full mb-2 bg-dark-100 p-2 rounded placeholder-gray-600 placeholder:opacity-40'
                       type='number'
                       placeholder='150'
                     />
@@ -149,7 +149,7 @@ const Club = () => {
                     </div>
                   </div>
                 </div>
-                <h1 className='pt-10 text-2xl'>Shots</h1>
+                <h1 className='pt-10 text-2xl text-gray-200'>Shots</h1>
                 {isLoading ? (
                   <div>Loading</div>
                 ) : (
