@@ -10,6 +10,7 @@ import Layout from './components/Layout'
 // import Login from './pages/Login'
 // import Register from './pages/Register'
 import NotFound from './pages/NotFound'
+import {sortClubsByAvgYards} from './helpers'
 
 import axios from 'axios'
 
@@ -23,7 +24,8 @@ const App = () => {
       console.log('api call from app')
       try {
         const result = await axios.get(`${process.env.REACT_APP_URL}/api`)
-        setClubData(result.data)
+        const sortedClubsByAvgYards = sortClubsByAvgYards(result.data)
+        setClubData(sortedClubsByAvgYards)
         setIsLoading(false)
       } catch (err) {
         console.log(err)
@@ -49,7 +51,17 @@ const App = () => {
               />
             }
           />
-          <Route path=':id' element={<Club />} />
+          <Route
+            path=':id'
+            element={
+              <Club
+                clubData={clubData}
+                setClubData={setClubData}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            }
+          />
           <Route path='add' element={<AddClub setClubData={setClubData} />} />
           <Route path=':id/edit' element={<EditClub />} />
         </Route>

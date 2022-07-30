@@ -9,7 +9,7 @@ import ShotList from './ShotList'
 import ShotItem from './ShotItem'
 import NavBar from '../../components/NavBar'
 
-const Club = () => {
+const Club = ({setClubData}) => {
   const navigate = useNavigate()
   const params = useParams()
   const id = params.id
@@ -45,6 +45,7 @@ const Club = () => {
           `${process.env.REACT_APP_URL}/api/${id}`
         )
         if (response.status === 200) {
+          setClubData([])
           navigateToClubs()
         }
       } catch (err) {
@@ -70,6 +71,7 @@ const Club = () => {
       )
       if (response.status === 200) {
         setClub(response.data)
+        setClubData([])
         setShot('')
       }
     } catch (err) {

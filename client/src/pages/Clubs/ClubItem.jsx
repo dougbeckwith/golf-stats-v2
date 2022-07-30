@@ -3,7 +3,7 @@ import {getAverageYards} from '../../helpers'
 
 const ClubItem = ({club, handleClick}) => {
   const id = club._id
-  const avgYards = getAverageYards(club)
+  let avgYards = getAverageYards(club)
 
   return (
     <>

@@ -4,23 +4,23 @@ import {v4 as uuidv4} from 'uuid'
 import axios from 'axios'
 import ClubItem from './ClubItem'
 import ClubList from './ClubList'
+import {sortClubsByAvgYards} from '../../helpers'
 
-const Clubs = ({clubData, setClubData, isLoading, setIsLoading}) => {
+const Clubs = ({clubData, setClubData}) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    setIsLoading(true)
     const getAllClubData = async () => {
       console.log('API call from CLUBS... GET ALL CLUB DATA')
       try {
         const response = await axios.get(`${process.env.REACT_APP_URL}/api`)
-        console.log(response.data)
-        setClubData(response.data)
-        setIsLoading(false)
+        const data = sortClubsByAvgYards(response.data)
+        setClubData(data)
       } catch (err) {
         console.log(err)
       }
     }
+
     getAllClubData()
 
     // eslint-disable-next-line
@@ -66,7 +66,7 @@ const Clubs = ({clubData, setClubData, isLoading, setIsLoading}) => {
             </div>
           </div>
 
-          {isLoading ? (
+          {!clubData ? (
             <div>Loading</div>
           ) : (
             <>
@@ -75,7 +75,6 @@ const Clubs = ({clubData, setClubData, isLoading, setIsLoading}) => {
                   <ClubItem
                     key={uuidv4()}
                     club={club}
-                    setClubData={setClubData}
                     handleClick={handleClick}
                   />
                 ))}
