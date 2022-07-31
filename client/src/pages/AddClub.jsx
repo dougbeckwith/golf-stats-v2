@@ -3,7 +3,7 @@ import {useState} from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 
-const AddClub = ({setClubData}) => {
+const AddClub = () => {
   const navigate = useNavigate()
   const [clubName, setClubName] = useState('')
   const [clubBrand, setClubBrand] = useState('')
@@ -27,16 +27,9 @@ const AddClub = ({setClubData}) => {
         })
 
         if (response.status === 200) {
-          // Set club state
-          setClubData((prevClubs) => {
-            return [...prevClubs, response.data]
-          })
-
           // Reset Input fields to empty strings
           setClubName('')
           setClubBrand('')
-
-          // Navigate to club page
           navigateToClubs()
         } else if (response.status === 400) {
           console.log(response.error)

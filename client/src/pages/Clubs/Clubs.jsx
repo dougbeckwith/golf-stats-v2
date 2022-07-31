@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import {v4 as uuidv4} from 'uuid'
 import axios from 'axios'
@@ -6,16 +6,22 @@ import ClubItem from './ClubItem'
 import ClubList from './ClubList'
 import {sortClubsByAvgYards} from '../../helpers'
 
-const Clubs = ({clubData, setClubData}) => {
+const Clubs = () => {
   const navigate = useNavigate()
+
+  const [clubData, setClubData] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [highestAvgShot, setHighestAvgShot] = useState(0)
 
   useEffect(() => {
     const getAllClubData = async () => {
-      console.log('API call from CLUBS... GET ALL CLUB DATA')
       try {
         const response = await axios.get(`${process.env.REACT_APP_URL}/api`)
         const data = sortClubsByAvgYards(response.data)
+        let highestAvgShot = data[0].avgYards
+        setHighestAvgShot(highestAvgShot)
         setClubData(data)
+        setIsLoading(false)
       } catch (err) {
         console.log(err)
       }
@@ -66,7 +72,7 @@ const Clubs = ({clubData, setClubData}) => {
             </div>
           </div>
 
-          {!clubData ? (
+          {isLoading ? (
             <div>Loading</div>
           ) : (
             <>
@@ -76,6 +82,7 @@ const Clubs = ({clubData, setClubData}) => {
                     key={uuidv4()}
                     club={club}
                     handleClick={handleClick}
+                    highestAvgShot={highestAvgShot}
                   />
                 ))}
               </ClubList>

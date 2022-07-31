@@ -9,7 +9,7 @@ import ShotList from './ShotList'
 import ShotItem from './ShotItem'
 import NavBar from '../../components/NavBar'
 
-const Club = ({setClubData}) => {
+const Club = () => {
   const navigate = useNavigate()
   const params = useParams()
   const id = params.id
@@ -24,7 +24,6 @@ const Club = ({setClubData}) => {
 
   // GET club and set club state
   useEffect(() => {
-    console.log('api call from club')
     const fetchClub = async () => {
       const response = await axios.get(`${process.env.REACT_APP_URL}/api/${id}`)
       setClub(response.data)
@@ -45,7 +44,6 @@ const Club = ({setClubData}) => {
           `${process.env.REACT_APP_URL}/api/${id}`
         )
         if (response.status === 200) {
-          setClubData([])
           navigateToClubs()
         }
       } catch (err) {
@@ -71,7 +69,6 @@ const Club = ({setClubData}) => {
       )
       if (response.status === 200) {
         setClub(response.data)
-        setClubData([])
         setShot('')
       }
     } catch (err) {

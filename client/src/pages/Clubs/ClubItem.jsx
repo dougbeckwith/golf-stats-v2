@@ -1,9 +1,18 @@
 import React from 'react'
 import {getAverageYards} from '../../helpers'
 
-const ClubItem = ({club, handleClick}) => {
+const ClubItem = ({club, handleClick, highestAvgShot}) => {
   const id = club._id
   let avgYards = getAverageYards(club)
+
+  // To dynamicly style the distance bar width
+  const getDistanceBarPercentage = (avgYards, highestAvgShot) => {
+    const percentage = (avgYards / highestAvgShot).toFixed(2) + '%'
+    if (percentage[0] === '1') {
+      return '100%'
+    } else return percentage.slice(2)
+  }
+  const widthPercentage = getDistanceBarPercentage(avgYards, highestAvgShot)
 
   return (
     <>
@@ -20,7 +29,9 @@ const ClubItem = ({club, handleClick}) => {
             <p className='ml-auto pr-4'>{avgYards} yrds</p>
           )}
         </div>
-        <div className='w-full bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700'></div>
+        <div
+          style={{width: widthPercentage}}
+          className={`mr-auto bg-gradient-to-r from-dark-200 to-blue-400 rounded-full h-4 mb-1 dark:bg-gray-700`}></div>
       </div>
     </>
   )
