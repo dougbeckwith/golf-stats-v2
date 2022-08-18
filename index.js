@@ -4,9 +4,10 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const cors = require('cors')
 const port = 3001
-var path = require('path')
+const clubRoutes = require('./routes/clubRoutes')
+const userRoutes = require('./routes/userRoutes')
+const path = require('path')
 
-console.log('test')
 const connectDataBase = async () => {
   try {
     await mongoose.connect(`${process.env.MONGO_URL}`)
@@ -17,10 +18,19 @@ const connectDataBase = async () => {
 }
 connectDataBase()
 
-app.use(cors())
+////////////////////////////////////////////////////////////
+// Added was getting error when trying to make user document in database
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+}
+////////////////////////////////////////////////////////
+
+app.use(cors(corsOptions))
 app.use(express.json())
-app.use('/api', require('./routes/clubRoutes'))
-app.use('/api/user', require('./routes/userRoutes'))
+app.use('/api/clubs', clubRoutes)
+app.use('/api/user', userRoutes)
 // PORT only defined in production server
 if (process.env.PORT) {
   app.use(express.static(path.join(__dirname, '/client/build')))
