@@ -7,8 +7,8 @@ import Club from './pages/Club/Club'
 import EditClub from './pages/EditClub'
 import Landing from './pages/Landing'
 import Layout from './components/Layout'
-// import Login from './pages/Login'
-// import Register from './pages/Register'
+import Login from './pages/Login'
+import SignUp from './pages/SignUp'
 import NotFound from './pages/NotFound'
 import {sortClubsByAvgYards} from './helpers'
 
@@ -26,8 +26,8 @@ const App = () => {
           <Route path=':id/edit' element={<EditClub />} />
         </Route>
         <Route path='/*' element={<NotFound />} />
-        {/* <Route index element={<Login />} />
-        <Route index element={<Register />} /> */}
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   )
