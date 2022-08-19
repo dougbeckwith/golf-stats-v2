@@ -28,7 +28,15 @@ userSchema.statics.signup = async function (email, password) {
   if (!validator.isEmail(email)) {
     throw new Error('Please enter a valid email')
   }
-  if (!validator.isStrongPassword(password)) {
+  if (
+    !validator.isStrongPassword(password, {
+      minLength: 6,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 0,
+      minSymbols: 0,
+    })
+  ) {
     throw new Error('Please enter a stronger password')
   }
 
@@ -43,6 +51,34 @@ userSchema.statics.signup = async function (email, password) {
 
   const user = await this.create({email, password: hash})
   return user
+}
+
+userSchema.statics.login = async function (email, password) {
+  // Check if email and password
+  // If not throw error
+  if (!email || !password) {
+    // It Creates a new Error object and sets the error.message property
+    // to the provided text message
+    throw new Error('Please enter email and password')
+  }
+
+  // Check if email is in database
+  // If no user with that email throw error
+  const user = await this.findOne({email})
+  console.log(user)
+  if (!user) {
+    throw new Error('Invalid email and/or password ')
+  }
+
+  // If user found check if password matches password in database
+  // If not match throw error
+  // If match return user
+  const match = await bcrypt.compare(password, user.password)
+  if (match) {
+    return user
+  } else {
+    throw new Error('Invalid email and/or password')
+  }
 }
 
 const User = mongoose.model('User', userSchema)
