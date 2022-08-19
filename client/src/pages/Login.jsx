@@ -1,182 +1,119 @@
-import {useState, useEffect} from 'react'
-// import axios from 'axios'
-import {Link} from 'react-router-dom'
-import {FaCheckSquare} from 'react-icons/fa'
-
-const USER_REGEX = /^.{4,}$/
-const PWD_REGEX = /^.{5,}$/
-// const REGISTER_URL = '/Login'
+import {useState, useEffect, useRef} from 'react'
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 const Login = () => {
-  const [user, setUser] = useState('')
-  const [validName, setValidName] = useState(false)
+  const navigate = useNavigate()
 
-  const [pwd, setPwd] = useState('')
-  const [validPwd, setValidPwd] = useState(false)
+  const [error, setError] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  // eslint-disable-next-line
-  const [matchPwd, setMatchPwd] = useState('')
-  const [validMatch, setValidMatch] = useState(false)
+  // State for button disabled if making sign up request
+  const [isLoading, setIsloading] = useState(false)
 
-  const [errMsg, setErrMsg] = useState('')
-  // const [success, setSuccess] = useState(false)
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value)
+  }
 
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value)
+  }
+  const navigateToCreateAccount = () => {
+    navigate('/signup')
+  }
+
+  // Focus input on load
+  const inputReference = useRef(null)
   useEffect(() => {
-    setValidName(USER_REGEX.test(user))
-  }, [user])
-
-  useEffect(() => {
-    setValidPwd(PWD_REGEX.test(pwd))
-    if (pwd === '' && matchPwd === '') {
-      setValidMatch(false)
-      return
-    }
-    setValidMatch(pwd === matchPwd)
-  }, [pwd, matchPwd])
-
-  useEffect(() => {
-    setErrMsg('')
-  }, [user, pwd, matchPwd])
+    inputReference.current.focus()
+  }, [])
 
   const handleSubmit = async (e) => {
-    console.log('submit')
     e.preventDefault()
-    // const v1 = USER_REGEX.test(user)
-    // const v2 = PWD_REGEX.test(pwd)
-    // const matchPw = pwd === matchPwd
-    // if (!v1 || !v2 || !matchPw) {
-    //   console.log('err')
-    //   setErrMsg('Please enter valid username and password')
-    //   return
-    // }
-    // try {
-    //   const response = await axios.post(
-    //     REGISTER_URL,
-    //     JSON.stringify({user, pwd}),
-    //     {
-    //       headers: {'Content-Type': 'application/json'},
-    //       withCredentials: true,
-    //     }
-    //   )
-    //   console.log(response?.data)
-    //   console.log(response?.accessToken)
-    //   console.log(JSON.stringify(response))
-    //   setSuccess(true)
-    //   setUser('')
-    //   setPwd('')
-    //   setMatchPwd('')
-    // } catch (err) {
-    //   if (!err?.response) {
-    //     setErrMsg('No Server Response')
-    //   } else if (err.response?.status === 409) {
-    //     setErrMsg('Username Taken')
-    //   } else {
-    //     setErrMsg('Registration Failed')
-    //   }
-    // }
+    setIsloading(true)
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_URL}/api/user/login`,
+        JSON.stringify({email, password}),
+        {
+          headers: {'Content-Type': 'application/json'},
+          withCredentials: true,
+        }
+      )
+      setIsloading(false)
+      console.log(response)
+
+      if (response.data.error) {
+        setError(response.data.error)
+      }
+      if (!response.data.error) {
+        setEmail('')
+        setPassword('')
+        // navigate('/clubs')
+      }
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
     <>
-      {/* change to success future */}
-      {/* {false ? (
-        <section>
-          <h1>Success!</h1>
-          <p>
-            <Link to='/login'>
-              <button className=''>Login</button>
-            </Link>
-          </p>
-        </section>
-      ) : ( */}
-
-      <div className='pt-6 flex flex-col'>
-        <div className='container max-w-[600px] mx-auto flex-1 flex flex-col items-center justify-center px-2'>
-          <div className='bg-white px-6 py-8 rounded shadow-xl border-2 text-black w-full'>
-            <h1 className='mb-8 text-3xl text-center'>Login</h1>
+      <div className='h-screen bg-dark-500 flex pt-10 sm:pt-24 justify-center text-gray-400'>
+        <div className='container max-w-[600px]'>
+          <h2 className='w-full text-center pb-4 text-lg md:text-2xl'>
+            Log into Golf Stats
+          </h2>
+          <div className='sm:bg-dark-400 px-3 py-4 md:px-6 md:py-8 sm:rounded-lg w-full'>
             <form>
-              <div className='flex items-center gap-2'>
-                <label htmlFor='user-name'>Username</label>
-                {validName && (
-                  <FaCheckSquare color='rgb(22 163 74 / var(--tw-bg-opacity))' />
-                )}
-              </div>
-              <input
-                type='text'
-                name='user-name'
-                id='user-name'
-                placeholder='User Name'
-                className='block border-2 w-full p-3 rounded focus:outline-none focus:border-slate-400  focus:ring-slate-400'
-                onChange={(e) => setUser(e.target.value)}
-                value={user}
-              />
-              {/* <p className={!validName ? 'text-xs h-4' : 'invisible h-4'}>
-                Please use 4 or more characters
-              </p> */}
-              <div className='pt-2'>
-                <div className='flex items-center gap-2'>
-                  <label htmlFor='password'>Password</label>
-                  {validPwd && (
-                    <FaCheckSquare color='rgb(22 163 74 / var(--tw-bg-opacity))' />
-                  )}
-                </div>
-              </div>
-              <input
-                type='password'
-                name='password'
-                id='password'
-                placeholder='Password'
-                className='block border-2 w-full p-3 rounded focus:outline-none focus:border-slate-400  focus:ring-slate-400'
-                onChange={(e) => setPwd(e.target.value)}
-                value={pwd}
-              />
-              {/* <p className={!validPwd ? 'text-xs h-4' : 'invisible h-4'}>
-                Please use 6 or more characters
-              </p> */}
-              {/* <div className='pt-2'>
-                <div className='flex items-center gap-2'>
-                  <label htmlFor='confirm-password' className=''>
-                    Confirm Password
+              <div>
+                <div className='pb-1 pl-1'>
+                  <label htmlFor='email' className='text-lg text-gray-400'>
+                    Email
                   </label>
-                  {validMatch && (
-                    <FaCheckSquare color='rgb(22 163 74 / var(--tw-bg-opacity))' />
-                  )}
                 </div>
+                <input
+                  ref={inputReference}
+                  id='email'
+                  type='text'
+                  onChange={handleEmailChange}
+                  className='bg-dark-200 placeholder-opacity-60 placeholder-gray-600 w-full p-3 rounded-md border-2 border-dark-200 focus:outline-none focus:border-blue-400  focus:ring-blue-400'
+                  placeholder='John@gmail.com'
+                  value={email}
+                />
               </div>
-              <input
-                type='password'
-                id='confirm-password'
-                name='confirm-password'
-                placeholder='Confirm Password'
-                className='block border-2 w-full p-3 rounded focus:outline-none focus:border-slate-400  focus:ring-slate-400'
-                onChange={(e) => setMatchPwd(e.target.value)}
-                value={matchPwd}
-              /> */}
-              {/* <p className={!validMatch ? 'text-xs h-4' : 'invisible h-4'}>
-                Passwords must match
-              </p> */}
-
-              {/* <button
+              <div className='pt-2 pb-4'>
+                <div className='pb-2 pl-1'>
+                  <label htmlFor='password' className='text-lg'>
+                    Password
+                  </label>
+                </div>
+                <input
+                  id='password'
+                  type='password'
+                  onChange={handlePasswordChange}
+                  className='bg-dark-200 placeholder-opacity-60 placeholder-gray-600 w-full p-3 rounded-md border-2 border-dark-200 focus:outline-none focus:border-blue-400  focus:ring-blue-400'
+                  placeholder='Password'
+                  value={password}
+                />
+              </div>
+              {error && <p className='text-red'>{error}</p>}
+              <button
+                disabled={isLoading}
                 onClick={handleSubmit}
-                className='mt-4 w-full text-center py-3 rounded bg-green-600 text-white hover:bg-green-500 focus:outline-none my-1'>
-                Create Account
-              </button> */}
-              <p
-                className={
-                  !validMatch ? 'text-xs h-4 text-red-600' : 'invisible h-4'
-                }>
-                {errMsg}
-              </p>
-            </form>
-            <div className='text-grey-dark mt-6'>
-              <Link to='/login'>
+                className='mt-4 w-full bg-blue-400 py-3 rounded-md hover:bg-blue-300'>
+                Login
+              </button>
+              <div className='flex w-full justify-center items-center pt-4'>
+                <p className='text-gray-500 pr-2'>Need an account?</p>
                 <button
-                  onClick={handleSubmit}
-                  className='btn btn--primary w-full'>
-                  Login
+                  disabled={isLoading}
+                  onClick={navigateToCreateAccount}
+                  className='text-sm py-3 rounded-md text-gray-400 hover:text-gray-200'>
+                  Sign Up
                 </button>
-              </Link>
-            </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
