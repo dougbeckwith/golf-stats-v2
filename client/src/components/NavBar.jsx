@@ -9,30 +9,9 @@ const Navbar = () => {
     setIsFaTimes(!isFaTimes)
   }
 
-  const navLinks = [
-    {title: 'Clubs', id: 1, link: '/clubs'},
-    // {title: 'Login', id: 2, link: '/login'},
-    // {title: 'Register', id: 3, link: '/register'},
-  ]
-
-  // Nav active for future
-  // {(navData) =>
-  //   navData.isActive
-  //     ? '  px-3 py-2  rounded-md text-blue-400 '
-  //     : 'text-gray-400  hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md'
-  // }
-
-  const navLinkList = navLinks.map((item) => {
-    return (
-      <li key={item.id} className=' px-3 font-medium py-10'>
-        <NavLink
-          className='text-gray-400  hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md'
-          to={item.link}>
-          {item.title}
-        </NavLink>
-      </li>
-    )
-  })
+  const logout = () => {
+    console.log('logout')
+  }
 
   return (
     //border-b-2 border-opacity-10 border-gray-200
@@ -42,7 +21,23 @@ const Navbar = () => {
           Golf Stats
         </p>
         {/* Desktop Links */}
-        <ul className='hidden md:flex'>{navLinkList}</ul>
+        <ul className='hidden md:flex'>
+          <li className=' px-3 font-medium py-10'>
+            <NavLink
+              className='text-gray-400  hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md'
+              to='/clubs'>
+              Clubs
+            </NavLink>
+          </li>
+          <li className=' px-3 font-medium py-10'>
+            <NavLink
+              onClick={logout}
+              className='text-gray-400  hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md'
+              to='/logout'>
+              Logout
+            </NavLink>
+          </li>
+        </ul>
         <div className='block md:hidden cursor-pointer z-10 pl-2'>
           {isFaTimes ? (
             <FaTimes onClick={toggleIcon} size={30} color={'#9ca3af'} />
@@ -57,7 +52,20 @@ const Navbar = () => {
         <ul
           onClick={toggleIcon}
           className=' text-2xl absolute md:hidden top-[90px] left-0 w-full h-screen bg-dark-500 flex flex-col items-center z-10'>
-          {navLinkList}
+          <li className=' px-3 font-medium py-10'>
+            <NavLink
+              className='text-gray-400  hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md'
+              to='/clubs'>
+              Clubs
+            </NavLink>
+          </li>
+          <li className=' px-3 font-medium py-10'>
+            <NavLink
+              className='text-gray-400  hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md'
+              to='/'>
+              Logout
+            </NavLink>
+          </li>
         </ul>
       )}
     </nav>
