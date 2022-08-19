@@ -7,7 +7,6 @@ import {GiGolfTee} from 'react-icons/gi'
 import {getAverageYards} from '../../helpers'
 import ShotList from './ShotList'
 import ShotItem from './ShotItem'
-import NavBar from '../../components/NavBar'
 
 const Club = () => {
   const navigate = useNavigate()
@@ -80,7 +79,6 @@ const Club = () => {
 
   return (
     <>
-      <NavBar />
       <div className='w-full bg-dark-400 text-gray-500 min-h-screen max-h-min '>
         <div className='container m-auto pt-4 xl:pt-16 px-3 sm:px-0'>
           {isLoading ? (
