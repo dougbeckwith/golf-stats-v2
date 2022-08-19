@@ -25,7 +25,9 @@ const Club = () => {
   // GET club and set club state
   useEffect(() => {
     const fetchClub = async () => {
-      const response = await axios.get(`${process.env.REACT_APP_URL}/api/${id}`)
+      const response = await axios.get(
+        `${process.env.REACT_APP_URL}/api/clubs/${id}`
+      )
       setClub(response.data)
       setIsLoading(false)
     }
@@ -41,7 +43,7 @@ const Club = () => {
     if (answer === 'delete') {
       try {
         const response = await axios.delete(
-          `${process.env.REACT_APP_URL}/api/${id}`
+          `${process.env.REACT_APP_URL}/api/clubs/${id}`
         )
         if (response.status === 200) {
           navigateToClubs()
@@ -61,7 +63,7 @@ const Club = () => {
     try {
       // UPDATE club (add shot)
       const response = await axios.patch(
-        `${process.env.REACT_APP_URL}/api/${id}`,
+        `${process.env.REACT_APP_URL}/api/clubs/${id}`,
         {
           club: club,
           shot: {yards: parseInt(shot), id: uuidv4()},

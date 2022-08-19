@@ -11,7 +11,7 @@ const ShotItem = ({setClub, club, shot}) => {
   const deleteShot = async () => {
     try {
       const response = await axios.patch(
-        `${process.env.REACT_APP_URL}/api/${id}`,
+        `${process.env.REACT_APP_URL}/api/clubs/${id}`,
         {
           deleteShot: true,
           shotId: shot.id,

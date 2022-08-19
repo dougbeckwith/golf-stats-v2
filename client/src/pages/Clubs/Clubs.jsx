@@ -16,7 +16,9 @@ const Clubs = () => {
   useEffect(() => {
     const getAllClubData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_URL}/api`)
+        const response = await axios.get(
+          `${process.env.REACT_APP_URL}/api/clubs`
+        )
         const data = sortClubsByAvgYards(response.data)
         let highestAvgShot = data[0].avgYards
         setHighestAvgShot(highestAvgShot)

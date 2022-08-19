@@ -18,13 +18,16 @@ const AddClub = () => {
     if (inputValid(clubName) && inputValid(clubBrand)) {
       try {
         // Try to add club to database
-        const response = await axios.post(`${process.env.REACT_APP_URL}/api`, {
-          clubName: clubName,
-          brand: clubBrand,
-          shots: [],
-          totalShots: 0,
-          avgYards: 0,
-        })
+        const response = await axios.post(
+          `${process.env.REACT_APP_URL}/api/clubs`,
+          {
+            clubName: clubName,
+            brand: clubBrand,
+            shots: [],
+            totalShots: 0,
+            avgYards: 0,
+          }
+        )
 
         if (response.status === 200) {
           // Reset Input fields to empty strings

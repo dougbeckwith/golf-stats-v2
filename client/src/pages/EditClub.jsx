@@ -16,7 +16,9 @@ const EditClub = () => {
   // GET club from database
   useEffect(() => {
     const fetchClub = async () => {
-      const result = await axios.get(`${process.env.REACT_APP_URL}/api/${id}`)
+      const result = await axios.get(
+        `${process.env.REACT_APP_URL}/api/clubs/${id}`
+      )
       setClubName(result.data.clubName)
       setClubBrand(result.data.brand)
       setIsLoading(false)
@@ -44,7 +46,7 @@ const EditClub = () => {
     e.preventDefault()
     if (inputValid(clubName) && inputValid(clubBrand)) {
       try {
-        await axios.patch(`${process.env.REACT_APP_URL}/api/${id}`, {
+        await axios.patch(`${process.env.REACT_APP_URL}/api/clubs/${id}`, {
           clubName: clubName,
           clubBrand: clubBrand,
         })
