@@ -24,27 +24,24 @@ const Landing = () => {
           your game. Dive deep into your club data.
         </p>
         <div className='mt-10 flex justify-center gap-x-6'>
-          {/* <Link to='/login'>
-            <button className='px-4 py-2 text-sm font-medium rounded-md shadow-sm text-dark-400 bg-gray-500 hover:bg-blue-400 '>
+          <Link to='/login'>
+            <button className='px-4 py-2 md:px-7 text-sm font-medium rounded-md shadow-sm text-dark-400 bg-gray-500 hover:bg-gray-400 '>
               Login
             </button>
           </Link>
-          <Link to='/register'>
+          <Link to='/signup'>
             <button
               type='button'
-              className='px-4 py-2 text-sm font-medium rounded-md shadow-sm text-gray-300 bg-blue-400 hover:bg-blue-300 '>
+              className='px-4 py-2 md:px-7 text-sm font-medium rounded-md shadow-sm text-gray-300 bg-blue-400 hover:bg-blue-300 '>
               Sign Up
             </button>
-          </Link> */}
+          </Link>
         </div>
         <div className='mt-4 flex justify-center gap-x-6'>
           <Link to='/clubs'>
-            {/* <button className='px-4 py-2 text-sm font-medium rounded-md shadow-sm text-dark-400 bg-gray-200 hover:bg-blue-400 '>
-              Demo
-            </button> */}
             <button
               type='button'
-              className='px-10 py-2 md:px-10 text-sm font-medium rounded-md shadow-sm text-gray-300 bg-blue-400 hover:bg-blue-300 '>
+              className='px-4 py-2 md:px-7 text-sm font-medium rounded-md shadow-sm text-dark-400 bg-gray-500 hover:bg-gray-400  '>
               Demo
             </button>
           </Link>
