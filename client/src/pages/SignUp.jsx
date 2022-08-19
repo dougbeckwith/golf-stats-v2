@@ -88,7 +88,7 @@ const SignUp = () => {
                   value={email}
                 />
               </div>
-              <div className='pt-2'>
+              <div className='pt-2 pb-4'>
                 <div className='pb-2 pl-1'>
                   <label htmlFor='password' className='text-lg'>
                     Password
