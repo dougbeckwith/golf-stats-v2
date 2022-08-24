@@ -2,6 +2,7 @@ import React from 'react'
 import {useState} from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
+import useAuth from '../hooks/useAuth'
 
 const AddClub = () => {
   const navigate = useNavigate()
@@ -9,6 +10,8 @@ const AddClub = () => {
   const [clubBrand, setClubBrand] = useState('')
   const [nameMessage, setNameMessage] = useState(false)
   const [brandMessage, setBrandMessage] = useState(false)
+
+  const {auth} = useAuth()
 
   // Add club to database
   const handleSubmit = async (e) => {
@@ -26,6 +29,11 @@ const AddClub = () => {
             shots: [],
             totalShots: 0,
             avgYards: 0,
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
+            },
           }
         )
 

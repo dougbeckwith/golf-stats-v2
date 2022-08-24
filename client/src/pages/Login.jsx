@@ -1,14 +1,12 @@
 import {useState, useEffect, useRef} from 'react'
 import axios from 'axios'
-import {useNavigate, useLocation} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 
 const Login = () => {
   const {setAuth} = useAuth()
 
   const navigate = useNavigate()
-  const location = useLocation()
-  const from = location.state?.from?.pathname || '/clubs'
 
   const [error, setError] = useState('')
   const [email, setEmail] = useState('')
@@ -47,7 +45,6 @@ const Login = () => {
         }
       )
       setIsloading(false)
-      console.log(response)
 
       if (response.data.error) {
         setError(response.data.error)
@@ -57,7 +54,7 @@ const Login = () => {
         setAuth({email, accessToken})
         setEmail('')
         setPassword('')
-        navigate(from, {replace: true})
+        navigate('/clubs')
       }
     } catch (err) {
       console.log(err)

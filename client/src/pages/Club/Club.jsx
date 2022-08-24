@@ -7,11 +7,15 @@ import {GiGolfTee} from 'react-icons/gi'
 import {getAverageYards} from '../../helpers'
 import ShotList from './ShotList'
 import ShotItem from './ShotItem'
+import useAuth from '../../hooks/useAuth'
 
 const Club = () => {
   const navigate = useNavigate()
   const params = useParams()
   const id = params.id
+
+  const {auth} = useAuth()
+
   const [club, setClub] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const [shot, setShot] = useState('')
@@ -25,7 +29,12 @@ const Club = () => {
   useEffect(() => {
     const fetchClub = async () => {
       const response = await axios.get(
-        `${process.env.REACT_APP_URL}/api/clubs/${id}`
+        `${process.env.REACT_APP_URL}/api/clubs/${id}`,
+        {
+          headers: {
+            Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
+          },
+        }
       )
       setClub(response.data)
       setIsLoading(false)
@@ -42,7 +51,12 @@ const Club = () => {
     if (answer === 'delete') {
       try {
         const response = await axios.delete(
-          `${process.env.REACT_APP_URL}/api/clubs/${id}`
+          `${process.env.REACT_APP_URL}/api/clubs/${id}`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
+            },
+          }
         )
         if (response.status === 200) {
           navigateToClubs()
@@ -66,6 +80,11 @@ const Club = () => {
         {
           club: club,
           shot: {yards: parseInt(shot), id: uuidv4()},
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
+          },
         }
       )
       if (response.status === 200) {

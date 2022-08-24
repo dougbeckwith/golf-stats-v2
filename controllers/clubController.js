@@ -36,16 +36,6 @@ const updateClub = async (req, res) => {
   const id = req.params.id
   const {clubName, clubBrand, shot, club, deleteShot, avgYards, shotId} =
     req.body
-  console.log('club', club)
-  console.log(typeof club)
-  console.log('shot', shot)
-  console.log(typeof shot)
-  console.log('avgYards', avgYards)
-  console.log(typeof avgYards)
-  console.log('shotId', shotId)
-  console.log(typeof shotId)
-  console.log('clubName', clubName)
-  console.log('clubBrand', clubBrand)
 
   if (clubName && clubBrand) {
     try {
@@ -68,7 +58,6 @@ const updateClub = async (req, res) => {
         },
         {new: true}
       )
-      console.log(clubs)
       // const clubs = await Club.findOne({_id: id})
       res.status(200).send(clubs)
     } catch (error) {

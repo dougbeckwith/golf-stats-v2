@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {FaBars, FaTimes} from 'react-icons/fa'
 import {NavLink} from 'react-router-dom'
+import useAuth from '../hooks/useAuth'
 
 const Navbar = () => {
   // State And Function Toggle Nav Menu
@@ -9,8 +10,11 @@ const Navbar = () => {
     setIsFaTimes(!isFaTimes)
   }
 
+  const {setAuth} = useAuth()
+
   const logout = () => {
     console.log('logout')
+    setAuth({})
   }
 
   return (

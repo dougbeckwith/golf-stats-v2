@@ -1,9 +1,12 @@
 import {useState, useRef, useEffect} from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
+import useAuth from '../hooks/useAuth'
 
 const SignUp = () => {
   const navigate = useNavigate()
+
+  const {setAuth} = useAuth()
 
   const [error, setError] = useState('')
   const [email, setEmail] = useState('')
@@ -53,10 +56,12 @@ const SignUp = () => {
         setError(response.data.error)
       }
       if (!response.data.error) {
+        const accessToken = response?.data?.accessToken
+        setAuth({email, accessToken})
         setEmail('')
         setPassword('')
         setError('')
-        // navigate('/clubs')
+        navigate('/clubs')
       }
     } catch (err) {
       console.log(err)

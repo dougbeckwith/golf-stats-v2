@@ -5,9 +5,12 @@ import axios from 'axios'
 import ClubItem from './ClubItem'
 import ClubList from './ClubList'
 import {sortClubsByAvgYards} from '../../helpers'
+import useAuth from '../../hooks/useAuth'
 
 const Clubs = () => {
   const navigate = useNavigate()
+
+  const {auth} = useAuth()
 
   const [clubData, setClubData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -17,7 +20,12 @@ const Clubs = () => {
     const getAllClubData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_URL}/api/clubs`
+          `${process.env.REACT_APP_URL}/api/clubs`,
+          {
+            headers: {
+              Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
+            },
+          }
         )
         const data = sortClubsByAvgYards(response.data)
         let highestAvgShot = data[0].avgYards

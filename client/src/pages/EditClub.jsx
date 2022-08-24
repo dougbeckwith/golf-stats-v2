@@ -2,10 +2,14 @@ import React from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import {useState, useEffect} from 'react'
+import useAuth from '../hooks/useAuth'
+
 const EditClub = () => {
   const params = useParams()
   const id = params.id
   const navigate = useNavigate()
+
+  const {auth} = useAuth()
 
   const [isLoading, setIsLoading] = useState(true)
   const [clubName, setClubName] = useState('')
@@ -17,7 +21,12 @@ const EditClub = () => {
   useEffect(() => {
     const fetchClub = async () => {
       const result = await axios.get(
-        `${process.env.REACT_APP_URL}/api/clubs/${id}`
+        `${process.env.REACT_APP_URL}/api/clubs/${id}`,
+        {
+          headers: {
+            Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
+          },
+        }
       )
       setClubName(result.data.clubName)
       setClubBrand(result.data.brand)
@@ -46,10 +55,18 @@ const EditClub = () => {
     e.preventDefault()
     if (inputValid(clubName) && inputValid(clubBrand)) {
       try {
-        await axios.patch(`${process.env.REACT_APP_URL}/api/clubs/${id}`, {
-          clubName: clubName,
-          clubBrand: clubBrand,
-        })
+        await axios.patch(
+          `${process.env.REACT_APP_URL}/api/clubs/${id}`,
+          {
+            clubName: clubName,
+            clubBrand: clubBrand,
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
+            },
+          }
+        )
         // Reset Input Fields
         setClubName('')
         setClubBrand('')

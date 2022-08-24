@@ -3,7 +3,9 @@ const jwt = require('jsonwebtoken')
 
 // create jwt token and return it
 const createToken = (_id) => {
-  return jwt.sign({_id: _id}, process.env.SECRET, {expiresIn: '3d'})
+  return jwt.sign({_id: _id}, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: '3d',
+  })
 }
 
 const loginUser = async (req, res) => {
