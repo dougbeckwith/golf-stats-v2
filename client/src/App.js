@@ -9,21 +9,31 @@ import Layout from './components/Layout'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import NotFound from './pages/NotFound'
+import Logout from './pages/Logout'
+import RequireAuth from './components/RequireAuth'
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Landing />} />
-        <Route path='/clubs' element={<Layout />}>
-          <Route index element={<Clubs />} />
-          <Route path=':id' element={<Club />} />
-          <Route path='add' element={<AddClub />} />
-          <Route path=':id/edit' element={<EditClub />} />
+        {/* private routes */}
+        <Route element={<RequireAuth />}>
+          <Route path='/clubs' element={<Layout />}>
+            <Route index element={<Clubs />} />
+            <Route path=':id' element={<Club />} />
+            <Route path='add' element={<AddClub />} />
+            <Route path=':id/edit' element={<EditClub />} />
+          </Route>
         </Route>
-        <Route path='/*' element={<NotFound />} />
+
+        {/* public routes */}
+        <Route path='/' element={<Landing />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/logout' element={<Logout />} />
+
+        {/* catch any non matching routes */}
+        <Route path='/*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )
