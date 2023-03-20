@@ -10,21 +10,18 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import NotFound from './pages/NotFound'
 import Logout from './pages/Logout'
-import RequireAuth from './components/RequireAuth'
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         {/* private routes */}
-        {/* <Route element={<RequireAuth />}> */}
           <Route path='/clubs' element={<Layout />}>
             <Route index element={<Clubs />} />
             <Route path=':id' element={<Club />} />
             <Route path='add' element={<AddClub />} />
             <Route path=':id/edit' element={<EditClub />} />
           </Route>
-        {/* </Route> */}
 
         {/* public routes */}
         <Route path='/' element={<Landing />} />

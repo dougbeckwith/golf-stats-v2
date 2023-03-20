@@ -2,7 +2,6 @@ import React from 'react'
 import {useState} from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
-import useAuth from '../hooks/useAuth'
 
 const AddClub = () => {
   const navigate = useNavigate()
@@ -11,8 +10,6 @@ const AddClub = () => {
   const [nameMessage, setNameMessage] = useState(false)
   const [brandMessage, setBrandMessage] = useState(false)
 
-  const {auth} = useAuth()
-
   // Add club to database
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -20,7 +17,6 @@ const AddClub = () => {
     // Check if inputs are valid
     if (inputValid(clubName) && inputValid(clubBrand)) {
       try {
-        
         // Try to add club to database
         const response = await axios.post(
           `${process.env.REACT_APP_CYCLIC_URL}/api/clubs`,
@@ -30,11 +26,6 @@ const AddClub = () => {
             shots: [],
             totalShots: 0,
             avgYards: 0,
-          },
-          {
-            headers: {
-              Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
-            },
           }
         )
 

@@ -2,24 +2,17 @@ import React from 'react'
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
 import {MdOutlineGolfCourse} from 'react-icons/md'
-import useAuth from '../../hooks/useAuth'
 
 const ShotItem = ({setClub, club, shot}) => {
   const params = useParams()
   const id = params.id
-
-  const {auth} = useAuth()
 
   // UPDATE club remove (shot)
   const deleteShot = async () => {
     try {
       const response = await axios.patch(
         `${process.env.REACT_APP_CYCLIC_URL}/api/clubs/${id}`,
-        {
-          headers: {
-            Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
-          },
-        },
+
         {
           deleteShot: true,
           shotId: shot.id,

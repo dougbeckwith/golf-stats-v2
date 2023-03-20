@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import {FaBars, FaTimes} from 'react-icons/fa'
 import {NavLink} from 'react-router-dom'
-import useAuth from '../hooks/useAuth'
 
 const Navbar = () => {
   // State And Function Toggle Nav Menu
@@ -10,13 +9,8 @@ const Navbar = () => {
     setIsFaTimes(!isFaTimes)
   }
 
-  const {setAuth} = useAuth()
 
-  const logout = () => {
-    console.log('logout')
-    localStorage.removeItem('user')
-    setAuth({})
-  }
+
 
   return (
     //border-b-2 border-opacity-10 border-gray-200
@@ -36,7 +30,6 @@ const Navbar = () => {
           </li>
           <li className=' px-3 font-medium py-10'>
             <NavLink
-              onClick={logout}
               className='text-gray-400  hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md'
               to='/logout'>
               Logout

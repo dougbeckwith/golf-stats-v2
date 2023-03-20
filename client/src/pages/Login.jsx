@@ -1,11 +1,7 @@
 import {useState, useEffect, useRef} from 'react'
-import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
-import useAuth from '../hooks/useAuth'
 
 const Login = () => {
-  const {setAuth} = useAuth()
-
   const navigate = useNavigate()
 
   const [error, setError] = useState('')
@@ -34,32 +30,9 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log('login handle submit')
+    setError('Login Not Working Yet')
     setIsloading(true)
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_CYCLIC_URL}/api/user/login`,
-        JSON.stringify({email, password}),
-        {
-          headers: {'Content-Type': 'application/json'},
-          withCredentials: true,
-        }
-      )
-      setIsloading(false)
-
-      if (response.data.error) {
-        setError(response.data.error)
-      }
-      if (!response.data.error) {
-        const accessToken = response?.data?.accessToken
-        localStorage.setItem('user', JSON.stringify(response.data))
-        setAuth({email, accessToken})
-        setEmail('')
-        setPassword('')
-        navigate('/clubs')
-      }
-    } catch (err) {
-      console.log(err)
-    }
   }
 
   return (

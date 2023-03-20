@@ -2,14 +2,11 @@ import React from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import {useState, useEffect} from 'react'
-import useAuth from '../hooks/useAuth'
 
 const EditClub = () => {
   const params = useParams()
   const id = params.id
   const navigate = useNavigate()
-
-  const {auth} = useAuth()
 
   const [isLoading, setIsLoading] = useState(true)
   const [clubName, setClubName] = useState('')
@@ -19,9 +16,7 @@ const EditClub = () => {
 
   // GET club from database
   useEffect(() => {
-    console.log('htest')
     const fetchClub = async () => {
-      
       const result = await axios.get(
         `${process.env.REACT_APP_CYCLIC_URL}/api/clubs/${id}`
       )
@@ -57,11 +52,6 @@ const EditClub = () => {
           {
             clubName: clubName,
             clubBrand: clubBrand,
-          },
-          {
-            headers: {
-              Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
-            },
           }
         )
         // Reset Input Fields
