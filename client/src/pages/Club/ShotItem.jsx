@@ -14,7 +14,7 @@ const ShotItem = ({setClub, club, shot}) => {
   const deleteShot = async () => {
     try {
       const response = await axios.patch(
-        `${process.env.REACT_APP_URL}/api/clubs/${id}`,
+        `${process.env.CYCLIC_URL}/api/clubs/${id}`,
         {
           headers: {
             Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token

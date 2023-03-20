@@ -22,7 +22,7 @@ const AddClub = () => {
       try {
         // Try to add club to database
         const response = await axios.post(
-          `${process.env.REACT_APP_URL}/api/clubs`,
+          `${process.env.CYCLIC_URL}/api/clubs`,
           {
             clubName: clubName,
             brand: clubBrand,

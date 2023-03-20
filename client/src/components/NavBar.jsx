@@ -14,6 +14,7 @@ const Navbar = () => {
 
   const logout = () => {
     console.log('logout')
+    localStorage.removeItem('user')
     setAuth({})
   }
 

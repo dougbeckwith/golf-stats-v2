@@ -29,7 +29,7 @@ const Club = () => {
   useEffect(() => {
     const fetchClub = async () => {
       const response = await axios.get(
-        `${process.env.REACT_APP_URL}/api/clubs/${id}`,
+        `${process.env.CYCLIC_URL}/api/clubs/${id}`,
         {
           headers: {
             Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
@@ -51,7 +51,7 @@ const Club = () => {
     if (answer === 'delete') {
       try {
         const response = await axios.delete(
-          `${process.env.REACT_APP_URL}/api/clubs/${id}`,
+          `${process.env.CYCLIC_URL}/api/clubs/${id}`,
           {
             headers: {
               Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
@@ -76,7 +76,7 @@ const Club = () => {
     try {
       // UPDATE club (add shot)
       const response = await axios.patch(
-        `${process.env.REACT_APP_URL}/api/clubs/${id}`,
+        `${process.env.CYCLIC_URL}/api/clubs/${id}`,
         {
           club: club,
           shot: {yards: parseInt(shot), id: uuidv4()},

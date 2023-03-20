@@ -37,7 +37,7 @@ const Login = () => {
     setIsloading(true)
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_URL}/api/user/login`,
+        `${process.env.CYCLIC_URL}/api/user/login`,
         JSON.stringify({email, password}),
         {
           headers: {'Content-Type': 'application/json'},
@@ -51,6 +51,7 @@ const Login = () => {
       }
       if (!response.data.error) {
         const accessToken = response?.data?.accessToken
+        localStorage.setItem('user', JSON.stringify(response.data))
         setAuth({email, accessToken})
         setEmail('')
         setPassword('')

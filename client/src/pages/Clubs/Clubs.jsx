@@ -20,7 +20,7 @@ const Clubs = () => {
     const getAllClubData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_URL}/api/clubs`,
+          `${process.env.CYCLIC_URL}/api/clubs`,
           {
             headers: {
               Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
@@ -36,11 +36,14 @@ const Clubs = () => {
         console.log(err)
       }
     }
-
-    getAllClubData()
+    console.log(auth)
+    if (!Object.keys(auth).length === 0) {
+      console.log(auth)
+      getAllClubData()
+    }
 
     // eslint-disable-next-line
-  }, [])
+  }, [auth])
 
   const handleClick = (id) => {
     navigate(`/clubs/${id}`)

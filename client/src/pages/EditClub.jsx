@@ -21,7 +21,7 @@ const EditClub = () => {
   useEffect(() => {
     const fetchClub = async () => {
       const result = await axios.get(
-        `${process.env.REACT_APP_URL}/api/clubs/${id}`,
+        `${process.env.CYCLIC_URL}/api/clubs/${id}`,
         {
           headers: {
             Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
@@ -56,7 +56,7 @@ const EditClub = () => {
     if (inputValid(clubName) && inputValid(clubBrand)) {
       try {
         await axios.patch(
-          `${process.env.REACT_APP_URL}/api/clubs/${id}`,
+          `${process.env.CYCLIC_URL}/api/clubs/${id}`,
           {
             clubName: clubName,
             clubBrand: clubBrand,
