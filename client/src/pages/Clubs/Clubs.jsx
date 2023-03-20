@@ -18,7 +18,7 @@ const Clubs = () => {
 
   useEffect(() => {
     const getAllClubData = async () => {
-     
+     console.log(`${process.env.REACT_APP_CYCLIC_URL}api/clubs`)
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_CYCLIC_URL}api/clubs`
