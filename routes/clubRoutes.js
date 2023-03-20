@@ -9,10 +9,10 @@ const {
   deleteClub,
 } = require('../controllers/clubController')
 
-const requireAuth = require('../middleware/requireAuth')
+// const requireAuth = require('../middleware/requireAuth')
 
 // require auth for all workouts routes
-router.use(requireAuth)
+// router.use(requireAuth)
 
 // Routes
 router.get('/', getClubs)
