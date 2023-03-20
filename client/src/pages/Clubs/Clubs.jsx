@@ -18,27 +18,12 @@ const Clubs = () => {
 
   useEffect(() => {
     const getAllClubData = async () => {
-      console.log('hello')
-      console.log(process.env.NODE_ENV)
      
       try {
-        let response = null;
-        if (process.env.NODE_ENV === 'development') {
-          response = await axios.get(
-            `http://localhost:3001/api/clubs`
-           
-          )
-        } else {
-          response = await axios.get(
-            `${process.env.REACT_APP_CYCLIC_URL}/api/clubs`,
-            // {
-            //   headers: {
-            //     Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
-            //   },
-            // }
-          )
-        }
-        console.log(response.data)
+        const response = await axios.get(
+          `${process.env.REACT_APP_CYCLIC_URL}api/clubs`
+         
+        )
         const data = sortClubsByAvgYards(response.data)
         let highestAvgShot = data[0].avgYards
         setHighestAvgShot(highestAvgShot)

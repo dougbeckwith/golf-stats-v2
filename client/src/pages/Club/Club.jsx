@@ -27,13 +27,10 @@ const Club = () => {
 
   // GET club and set club state
   useEffect(() => {
-    console.log()
-    console.log(`${process.env.REACT_APP_CYCLIC_URL}api/clubs/${id}`)
     const fetchClub = async () => {
       const response = await axios.get(
         `${process.env.REACT_APP_CYCLIC_URL}api/clubs/${id}`
       )
-      console.log(response)
       setClub(response.data)
       setIsLoading(false)
     }
