@@ -9,9 +9,6 @@ const Navbar = () => {
     setIsFaTimes(!isFaTimes)
   }
 
-
-
-
   return (
     //border-b-2 border-opacity-10 border-gray-200
     <nav className='w-full h-[90px] bg-dark-500 '>
@@ -28,13 +25,13 @@ const Navbar = () => {
               Clubs
             </NavLink>
           </li>
-          <li className=' px-3 font-medium py-10'>
+          {/* <li className=' px-3 font-medium py-10'>
             <NavLink
               className='text-gray-400  hover:bg-dark-200 hover:text-white px-3 py-2 rounded-md'
-              to='/logout'>
+              to='/clubs'>
               Logout
             </NavLink>
-          </li>
+          </li> */}
         </ul>
         <div className='block md:hidden cursor-pointer z-10 pl-2'>
           {isFaTimes ? (

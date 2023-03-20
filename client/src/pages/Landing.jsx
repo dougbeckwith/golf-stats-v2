@@ -23,7 +23,7 @@ const Landing = () => {
           Play the game your way. Easily track club data to remove strokes from
           your game. Dive deep into your club data.
         </p>
-        <div className='mt-10 flex justify-center gap-x-6'>
+        {/* <div className='mt-10 flex justify-center gap-x-6'>
           <Link to='/login'>
             <button className='px-4 py-2 md:px-7 text-sm font-medium rounded-md shadow-sm text-dark-400 bg-gray-500 hover:bg-gray-400 '>
               Login
@@ -36,12 +36,12 @@ const Landing = () => {
               Sign Up
             </button>
           </Link>
-        </div>
+        </div> */}
         <div className='mt-4 flex justify-center gap-x-6'>
           <Link to='/clubs'>
             <button
               type='button'
-              className='px-4 py-2 md:px-7 text-sm font-medium rounded-md shadow-sm text-dark-400 bg-gray-500 hover:bg-gray-400  '>
+              className='px-4 py-2 md:px-7 text-sm font-medium rounded-md shadow-sm text-gray-300 bg-blue-400 hover:bg-blue-300  '>
               Demo
             </button>
           </Link>

@@ -3,7 +3,6 @@ const Club = require('../models/Club')
 // GET all clubs
 const getClubs = async (req, res) => {
   try {
-    console.log('getting all clubs')
     const clubs = await Club.find({})
     res.status(200).send(clubs)
   } catch (error) {
