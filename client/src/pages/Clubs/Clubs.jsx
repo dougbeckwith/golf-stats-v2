@@ -5,12 +5,12 @@ import axios from 'axios'
 import ClubItem from './ClubItem'
 import ClubList from './ClubList'
 import {sortClubsByAvgYards} from '../../helpers'
-import useAuth from '../../hooks/useAuth'
+// import useAuth from '../../hooks/useAuth'
 
 const Clubs = () => {
   const navigate = useNavigate()
 
-  const {auth} = useAuth()
+  // const {auth} = useAuth()
 
   const [clubData, setClubData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -33,7 +33,7 @@ const Clubs = () => {
         console.log(err)
       }
     }
-    console.log(auth)
+    // console.log(auth)
     // if (!Object.keys(auth).length === 0) {
     //   console.log(auth)
     //   getAllClubData()
@@ -41,7 +41,7 @@ const Clubs = () => {
     getAllClubData()
 
     // eslint-disable-next-line
-  }, [auth])
+  }, [])
 
   const handleClick = (id) => {
     navigate(`/clubs/${id}`)
