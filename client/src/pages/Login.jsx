@@ -37,7 +37,7 @@ const Login = () => {
     setIsloading(true)
     try {
       const response = await axios.post(
-        `${process.env.CYCLIC_URL}/api/user/login`,
+        `${process.env.REACT_APP_CYCLIC_URL}/api/user/login`,
         JSON.stringify({email, password}),
         {
           headers: {'Content-Type': 'application/json'},

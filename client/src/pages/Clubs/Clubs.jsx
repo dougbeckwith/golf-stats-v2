@@ -5,12 +5,12 @@ import axios from 'axios'
 import ClubItem from './ClubItem'
 import ClubList from './ClubList'
 import {sortClubsByAvgYards} from '../../helpers'
-// import useAuth from '../../hooks/useAuth'
+import useAuth from '../../hooks/useAuth'
 
 const Clubs = () => {
   const navigate = useNavigate()
 
-  // const {auth} = useAuth()
+  const {auth} = useAuth()
 
   const [clubData, setClubData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -18,15 +18,27 @@ const Clubs = () => {
 
   useEffect(() => {
     const getAllClubData = async () => {
+      console.log('hello')
+      console.log(process.env.NODE_ENV)
+     
       try {
-        const response = await axios.get(
-          `${process.env.CYCLIC_URL}/api/clubs`,
-          // {
-          //   headers: {
-          //     Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
-          //   },
-          // }
-        )
+        let response = null;
+        if (process.env.NODE_ENV === 'development') {
+          response = await axios.get(
+            `http://localhost:3001/api/clubs`
+           
+          )
+        } else {
+          response = await axios.get(
+            `${process.env.REACT_APP_CYCLIC_URL}/api/clubs`,
+            // {
+            //   headers: {
+            //     Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
+            //   },
+            // }
+          )
+        }
+        console.log(response.data)
         const data = sortClubsByAvgYards(response.data)
         let highestAvgShot = data[0].avgYards
         setHighestAvgShot(highestAvgShot)

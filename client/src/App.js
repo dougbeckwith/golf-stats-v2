@@ -17,14 +17,14 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         {/* private routes */}
-        <Route element={<RequireAuth />}>
+        {/* <Route element={<RequireAuth />}> */}
           <Route path='/clubs' element={<Layout />}>
             <Route index element={<Clubs />} />
             <Route path=':id' element={<Club />} />
             <Route path='add' element={<AddClub />} />
             <Route path=':id/edit' element={<EditClub />} />
           </Route>
-        </Route>
+        {/* </Route> */}
 
         {/* public routes */}
         <Route path='/' element={<Landing />} />

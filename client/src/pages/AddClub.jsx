@@ -20,9 +20,10 @@ const AddClub = () => {
     // Check if inputs are valid
     if (inputValid(clubName) && inputValid(clubBrand)) {
       try {
+        
         // Try to add club to database
         const response = await axios.post(
-          `${process.env.CYCLIC_URL}/api/clubs`,
+          `${process.env.REACT_APP_CYCLIC_URL}/api/clubs`,
           {
             clubName: clubName,
             brand: clubBrand,
